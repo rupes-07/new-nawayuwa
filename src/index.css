@@ -1,0 +1,300 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   NAWA YUWA CLUB (नव युवा क्लब) — CENTRALIZED DESIGN TOKEN SYSTEM
+   Nepal-focused Youth & Civic Community Platform
+   ========================================================================== */
+
+:root {
+  /* Primary Accent: Nepal Crimson */
+  --color-primary: #C1121F;
+  --color-primary-hover: #9B111E;
+  --color-primary-muted: rgba(193, 18, 31, 0.08);
+  --color-primary-foreground: #FFFFFF;
+
+  /* Secondary Accent: Nepal Deep Blue */
+  --color-secondary: #003893;
+  --color-secondary-hover: #002663;
+  --color-secondary-muted: rgba(0, 56, 147, 0.08);
+  --color-secondary-foreground: #FFFFFF;
+
+  /* Canvas & Surfaces (Light Mode) */
+  --color-background: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-surface-muted: #F1F5F9;
+  --color-surface-elevated: #FFFFFF;
+
+  /* Text & Border */
+  --color-foreground: #0F172A;
+  --color-foreground-muted: #334155;
+  --color-muted: #64748B;
+  --color-border: #E2E8F0;
+  --color-border-subtle: #F1F5F9;
+
+  /* Semantic Feedback Tokens */
+  --color-success: #15803D;
+  --color-success-muted: rgba(21, 128, 61, 0.1);
+  --color-success-foreground: #FFFFFF;
+
+  --color-warning: #B45309;
+  --color-warning-muted: rgba(180, 83, 9, 0.1);
+  --color-warning-foreground: #FFFFFF;
+
+  --color-danger: #B91C1C;
+  --color-danger-muted: rgba(185, 28, 28, 0.1);
+  --color-danger-foreground: #FFFFFF;
+
+  --color-info: #0284C7;
+  --color-info-muted: rgba(2, 132, 199, 0.1);
+  --color-info-foreground: #FFFFFF;
+
+  /* Radii */
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1.25rem;
+  --radius-full: 9999px;
+
+  /* Elevation Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+  --shadow-focus: 0 0 0 3px rgba(193, 18, 31, 0.25);
+
+  /* Spacing Scale */
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  /* Typography Families */
+  --font-sans: 'Plus Jakarta Sans', 'Mukta', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-devanagari: 'Mukta', 'Noto Sans Devanagari', sans-serif;
+
+  /* Interactive minimum touch target */
+  --min-touch-size: 44px;
+}
+
+/* ==========================================================================
+   DARK THEME TOKENS
+   Preserves contrast, avoids pure black, maintains readable Nepali text
+   ========================================================================== */
+
+[data-theme="dark"],
+.dark {
+  /* Crimson tuned for dark mode readability */
+  --color-primary: #E63946;
+  --color-primary-hover: #F87171;
+  --color-primary-muted: rgba(230, 57, 70, 0.15);
+  --color-primary-foreground: #FFFFFF;
+
+  /* Deep Blue tuned for dark mode */
+  --color-secondary: #3B82F6;
+  --color-secondary-hover: #60A5FA;
+  --color-secondary-muted: rgba(59, 130, 246, 0.15);
+  --color-secondary-foreground: #FFFFFF;
+
+  /* Canvas & Surfaces (Dark Slate/Navy) */
+  --color-background: #0B0F17;
+  --color-surface: #131A29;
+  --color-surface-muted: #1B2438;
+  --color-surface-elevated: #232E45;
+
+  /* Text & Border */
+  --color-foreground: #F8FAFC;
+  --color-foreground-muted: #CBD5E1;
+  --color-muted: #94A3B8;
+  --color-border: #232E45;
+  --color-border-subtle: #182235;
+
+  /* Semantic Feedback */
+  --color-success: #22C55E;
+  --color-success-muted: rgba(34, 197, 94, 0.15);
+  --color-warning: #F59E0B;
+  --color-warning-muted: rgba(245, 158, 11, 0.15);
+  --color-danger: #EF4444;
+  --color-danger-muted: rgba(239, 68, 68, 0.15);
+  --color-info: #38BDF8;
+  --color-info-muted: rgba(56, 189, 248, 0.15);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+  --shadow-focus: 0 0 0 3px rgba(230, 57, 70, 0.35);
+}
+
+/* ==========================================================================
+   GLOBAL BASE STYLES
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-sans);
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  line-height: 1.6;
+}
+
+/* Devanagari text line-height compensation */
+:lang(ne),
+.font-devanagari {
+  font-family: var(--font-devanagari);
+  line-height: 1.75;
+}
+
+/* ==========================================================================
+   SUBTLE DHAKA-INSPIRED BACKGROUND PATTERN
+   Cultural texture used very subtly (0.02 - 0.04 opacity)
+   ========================================================================== */
+
+.pattern-dhaka {
+  background-image: radial-gradient(var(--color-primary) 0.75px, transparent 0.75px),
+                    radial-gradient(var(--color-secondary) 0.75px, transparent 0.75px);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
+  opacity: 0.04;
+}
+
+.pattern-dhaka-subtle {
+  background-image: 
+    linear-gradient(45deg, var(--color-primary) 25%, transparent 25%), 
+    linear-gradient(-45deg, var(--color-primary) 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, var(--color-primary) 75%), 
+    linear-gradient(-45deg, transparent 75%, var(--color-primary) 75%);
+  background-size: 32px 32px;
+  background-position: 0 0, 0 16px, 16px -16px, -16px 0px;
+  opacity: 0.025;
+}
+
+/* ==========================================================================
+   TYPOGRAPHY TOKENS
+   ========================================================================== */
+
+.type-display {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.type-hero {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.type-h1 {
+  font-size: clamp(1.625rem, 3vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+.type-h2 {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.type-h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.type-body-large {
+  font-size: 1.125rem;
+  line-height: 1.65;
+}
+
+.type-body {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.type-small {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.type-caption {
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.type-button {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+
+/* ==========================================================================
+   RESPONSIVE TOUCH DISCIPLINE
+   ========================================================================== */
+
+.touch-target {
+  min-height: var(--min-touch-size);
+  min-width: var(--min-touch-size);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Focus Visible Utility */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   REDUCED MOTION SUPPORT
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   PRINT STYLES
+   ========================================================================== */
+
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+  header, footer, nav, aside, .no-print {
+    display: none !important;
+  }
+}

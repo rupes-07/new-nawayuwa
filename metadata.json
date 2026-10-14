@@ -1,0 +1,8 @@
+{
+  "name": "Remix Nawa Yuwa Club",
+  "description": "Connecting youth, community, leadership, and local action across Nepal. Real-time platform statistics, local chapters, community issues reporting, and active volunteering projects.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
