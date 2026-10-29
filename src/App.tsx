@@ -16,6 +16,25 @@ import {
   ImpactPage,
   HowItWorksPage,
 } from './components/pages/index.ts';
+import {
+  LeaderLayout,
+  LeaderDashboardPage,
+  LeaderMembersPage,
+  LeaderIssuesPage,
+  LeaderNewProjectPage,
+  LeaderAttendancePage,
+  LeaderPromotionsPage,
+} from './components/leader/index.ts';
+import {
+  AdminLayout,
+  AdminDashboardPage,
+  AdminChaptersPage,
+  AdminPromotionsPage,
+  AdminModerationPage,
+  AdminConfigPage,
+  AdminAuditPage,
+} from './components/admin/index.ts';
+import { SignInPage, OnboardingPage } from './components/auth/index.ts';
 import { GlobalLayout } from './components/layout/GlobalLayout.tsx';
 import { Navbar } from './components/Navbar.tsx';
 import { Hero } from './components/Hero.tsx';
@@ -190,6 +209,93 @@ function MainContent() {
       );
     }
 
+    // 7. Phase 11: Leader Routes
+    if (cleanPath.startsWith('/leader')) {
+      return (
+        <LeaderLayout
+          activePath={cleanPath}
+          onNavigate={handleNavigate}
+        >
+          {(ctx) => {
+            if (cleanPath === '/leader/members') {
+              return <LeaderMembersPage context={ctx} onNavigate={handleNavigate} />;
+            }
+            if (cleanPath === '/leader/issues') {
+              return <LeaderIssuesPage context={ctx} onNavigate={handleNavigate} />;
+            }
+            if (cleanPath === '/leader/projects/new') {
+              return <LeaderNewProjectPage context={ctx} onNavigate={handleNavigate} />;
+            }
+            if (cleanPath === '/leader/attendance') {
+              return <LeaderAttendancePage context={ctx} onNavigate={handleNavigate} />;
+            }
+            if (cleanPath === '/leader/promotions') {
+              return <LeaderPromotionsPage context={ctx} onNavigate={handleNavigate} />;
+            }
+            // Default: /leader/dashboard
+            return <LeaderDashboardPage context={ctx} onNavigate={handleNavigate} />;
+          }}
+        </LeaderLayout>
+      );
+    }
+
+    // 8. Phase 12: Platform Administration Routes
+    if (cleanPath.startsWith('/admin')) {
+      return (
+        <AdminLayout
+          activePath={cleanPath}
+          onNavigate={handleNavigate}
+        >
+          {(ctx) => {
+            if (cleanPath === '/admin/chapters') {
+              return <AdminChaptersPage context={ctx} onNavigate={handleNavigate} />;
+            }
+            if (cleanPath === '/admin/promotions') {
+              return <AdminPromotionsPage context={ctx} onNavigate={handleNavigate} />;
+            }
+            if (cleanPath === '/admin/moderation') {
+              return <AdminModerationPage context={ctx} onNavigate={handleNavigate} />;
+            }
+            if (cleanPath === '/admin/config') {
+              return <AdminConfigPage context={ctx} onNavigate={handleNavigate} />;
+            }
+            if (cleanPath === '/admin/audit') {
+              return <AdminAuditPage context={ctx} onNavigate={handleNavigate} />;
+            }
+            // Default: /admin/dashboard
+            return <AdminDashboardPage context={ctx} onNavigate={handleNavigate} />;
+          }}
+        </AdminLayout>
+      );
+    }
+
+    // 9. Phase 5: Authentication & Onboarding Routes
+    if (cleanPath === '/sign-in') {
+      return <SignInPage onNavigate={handleNavigate} />;
+    }
+
+    if (cleanPath === '/onboarding') {
+      return <OnboardingPage onNavigate={handleNavigate} />;
+    }
+
+    if (cleanPath === '/dashboard') {
+      if (!user) {
+        return <SignInPage onNavigate={handleNavigate} redirectUrl="/dashboard" />;
+      }
+      if (!user.onboardingCompleted) {
+        return <OnboardingPage onNavigate={handleNavigate} />;
+      }
+      return (
+        <DashboardLayout
+          currentTab={dashboardTab}
+          setCurrentTab={setDashboardTab}
+          onBackToHome={() => handleNavigate('/')}
+        >
+          {renderDashboardTab()}
+        </DashboardLayout>
+      );
+    }
+
     // Default: Home Page
     return (
       <HomePage
@@ -205,9 +311,9 @@ function MainContent() {
       {/* Top Phase Navigation & Testing Inspector */}
       <aside aria-label="Phase navigation" className="bg-[var(--color-surface)] border-b border-[var(--color-border)] px-4 py-2 text-xs flex items-center justify-between z-50 overflow-x-auto">
         <div className="flex items-center gap-2 shrink-0 mr-3">
-          <span className="font-bold text-[var(--color-primary)]">Nawa Yuwa Club:</span>
+          <span className="font-bold text-[#FA5A00]">Nawa Yuwa Foundation:</span>
           <span className="text-[var(--color-muted)] hidden md:inline">
-            Phase 4: Public Routes
+            Auth & Role Permissions
           </span>
         </div>
         <div className="flex items-center gap-1.5 flex-nowrap shrink-0">
@@ -220,6 +326,26 @@ function MainContent() {
             }`}
           >
             Home
+          </button>
+          <button
+            onClick={() => handleNavigate('/sign-in')}
+            className={`touch-target px-2.5 py-1 rounded-md font-bold text-xs transition cursor-pointer whitespace-nowrap ${
+              currentView === 'home' && activePath === '/sign-in'
+                ? 'bg-[var(--color-primary)] text-white shadow-xs'
+                : 'bg-emerald-600/15 text-emerald-700 dark:text-emerald-400 border border-emerald-600/30 hover:bg-emerald-600 hover:text-white'
+            }`}
+          >
+            /sign-in
+          </button>
+          <button
+            onClick={() => handleNavigate('/onboarding')}
+            className={`touch-target px-2.5 py-1 rounded-md font-bold text-xs transition cursor-pointer whitespace-nowrap ${
+              currentView === 'home' && activePath === '/onboarding'
+                ? 'bg-[var(--color-primary)] text-white shadow-xs'
+                : 'bg-amber-600/15 text-amber-700 dark:text-amber-400 border border-amber-600/30 hover:bg-amber-600 hover:text-white'
+            }`}
+          >
+            /onboarding
           </button>
           <button
             onClick={() => handleNavigate('/chapters')}
@@ -241,25 +367,77 @@ function MainContent() {
           >
             /issues
           </button>
+          <span className="text-[var(--color-border)] px-1">|</span>
           <button
-            onClick={() => handleNavigate('/impact')}
+            onClick={() => handleNavigate('/leader/dashboard')}
             className={`touch-target px-2.5 py-1 rounded-md font-semibold text-xs transition cursor-pointer whitespace-nowrap ${
-              currentView === 'home' && activePath === '/impact'
+              currentView === 'home' && activePath.startsWith('/leader')
                 ? 'bg-[var(--color-primary)] text-white shadow-xs'
                 : 'bg-[var(--color-surface-muted)] text-[var(--color-muted)] hover:text-[var(--color-foreground)]'
             }`}
           >
-            /impact
+            Leader Portal
+          </button>
+          <span className="text-[var(--color-border)] px-1">|</span>
+          <button
+            onClick={() => handleNavigate('/admin/dashboard')}
+            className={`touch-target px-2.5 py-1 rounded-md font-semibold text-xs transition cursor-pointer whitespace-nowrap ${
+              currentView === 'home' && activePath === '/admin/dashboard'
+                ? 'bg-[var(--color-primary)] text-white shadow-xs'
+                : 'bg-indigo-600/10 text-indigo-700 dark:text-indigo-400 font-bold hover:bg-indigo-600 hover:text-white'
+            }`}
+          >
+            /admin/dashboard
           </button>
           <button
-            onClick={() => handleNavigate('/how-it-works')}
+            onClick={() => handleNavigate('/admin/chapters')}
             className={`touch-target px-2.5 py-1 rounded-md font-semibold text-xs transition cursor-pointer whitespace-nowrap ${
-              currentView === 'home' && activePath === '/how-it-works'
+              currentView === 'home' && activePath === '/admin/chapters'
                 ? 'bg-[var(--color-primary)] text-white shadow-xs'
                 : 'bg-[var(--color-surface-muted)] text-[var(--color-muted)] hover:text-[var(--color-foreground)]'
             }`}
           >
-            /how-it-works
+            /admin/chapters
+          </button>
+          <button
+            onClick={() => handleNavigate('/admin/promotions')}
+            className={`touch-target px-2.5 py-1 rounded-md font-semibold text-xs transition cursor-pointer whitespace-nowrap ${
+              currentView === 'home' && activePath === '/admin/promotions'
+                ? 'bg-[var(--color-primary)] text-white shadow-xs'
+                : 'bg-[var(--color-surface-muted)] text-[var(--color-muted)] hover:text-[var(--color-foreground)]'
+            }`}
+          >
+            /admin/promotions
+          </button>
+          <button
+            onClick={() => handleNavigate('/admin/moderation')}
+            className={`touch-target px-2.5 py-1 rounded-md font-semibold text-xs transition cursor-pointer whitespace-nowrap ${
+              currentView === 'home' && activePath === '/admin/moderation'
+                ? 'bg-[var(--color-primary)] text-white shadow-xs'
+                : 'bg-[var(--color-surface-muted)] text-[var(--color-muted)] hover:text-[var(--color-foreground)]'
+            }`}
+          >
+            /admin/moderation
+          </button>
+          <button
+            onClick={() => handleNavigate('/admin/config')}
+            className={`touch-target px-2.5 py-1 rounded-md font-semibold text-xs transition cursor-pointer whitespace-nowrap ${
+              currentView === 'home' && activePath === '/admin/config'
+                ? 'bg-[var(--color-primary)] text-white shadow-xs'
+                : 'bg-[var(--color-surface-muted)] text-[var(--color-muted)] hover:text-[var(--color-foreground)]'
+            }`}
+          >
+            /admin/config
+          </button>
+          <button
+            onClick={() => handleNavigate('/admin/audit')}
+            className={`touch-target px-2.5 py-1 rounded-md font-semibold text-xs transition cursor-pointer whitespace-nowrap ${
+              currentView === 'home' && activePath === '/admin/audit'
+                ? 'bg-[var(--color-primary)] text-white shadow-xs'
+                : 'bg-[var(--color-surface-muted)] text-[var(--color-muted)] hover:text-[var(--color-foreground)]'
+            }`}
+          >
+            /admin/audit
           </button>
           <span className="text-[var(--color-border)] px-1">|</span>
           <button

@@ -1,0 +1,108 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 1. Global Default Deny Catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // --- REUSABLE PRIMITIVE HELPERS ---
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email == 'adkrupes07@gmail.com' ||
+        request.auth.token.email == 'admin@nawayuwaclub.org' ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
+    }
+
+    // --- USER PROFILE VALIDATION ---
+    function isValidUser(data) {
+      return data.id is string && data.id.size() <= 128 &&
+             data.name is string && data.name.size() > 0 && data.name.size() <= 100 &&
+             data.role is string && (data.role in ['admin', 'chapter_leader', 'treasurer', 'player', 'member']) &&
+             data.onboardingCompleted is bool &&
+             (!('email' in data) || (data.email is string && data.email.size() <= 150)) &&
+             (!('phone' in data) || (data.phone is string && data.phone.size() <= 20)) &&
+             (!('province' in data) || (data.province is string && data.province.size() <= 100)) &&
+             (!('district' in data) || (data.district is string && data.district.size() <= 100)) &&
+             (!('localLevel' in data) || (data.localLevel is string && data.localLevel.size() <= 100)) &&
+             (!('ward' in data) || (data.ward is string && data.ward.size() <= 10)) &&
+             (!('preferredLanguage' in data) || (data.preferredLanguage in ['ne', 'en'])) &&
+             (!('volunteerHours' in data) || (data.volunteerHours is number)) &&
+             (!('avatar' in data) || (data.avatar is string && data.avatar.size() <= 500));
+    }
+
+    // --- USERS COLLECTION ---
+    match /users/{userId} {
+      allow get: if isSignedIn() && (isOwner(userId) || isAdmin());
+      allow list: if isAdmin();
+      
+      allow create: if isOwner(userId) &&
+                       isValidId(userId) &&
+                       isValidUser(incoming()) &&
+                       incoming().id == userId &&
+                       incoming().role == 'member'; // Standard self-registered role must be member
+
+      allow update: if isValidId(userId) &&
+                       isValidUser(incoming()) &&
+                       (isAdmin() || (
+                         isOwner(userId) &&
+                         incoming().id == existing().id &&
+                         incoming().role == existing().role && // Prevent role self-escalation
+                         incoming().diff(existing()).affectedKeys().hasOnly([
+                           'name', 'email', 'phone', 'province', 'district', 'localLevel', 'ward',
+                           'preferredLanguage', 'onboardingCompleted', 'avatar', 'updatedAt'
+                         ])
+                       ));
+
+      allow delete: if isAdmin();
+    }
+
+    // --- CHAPTERS COLLECTION (Public Read) ---
+    match /chapters/{chapterId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // --- ISSUES COLLECTION ---
+    match /issues/{issueId} {
+      allow read: if true;
+      allow create: if isSignedIn() &&
+                       isValidId(issueId) &&
+                       incoming().reportedBy == request.auth.uid;
+      allow update: if isSignedIn() && (
+                       isAdmin() ||
+                       (resource.data.reportedBy == request.auth.uid &&
+                        incoming().diff(existing()).affectedKeys().hasOnly(['title', 'description', 'category', 'location', 'ward'])) ||
+                       incoming().diff(existing()).affectedKeys().hasOnly(['upvotes'])
+                     );
+      allow delete: if isAdmin() || (isSignedIn() && resource.data.reportedBy == request.auth.uid);
+    }
+
+    // --- PROJECTS COLLECTION ---
+    match /projects/{projectId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}

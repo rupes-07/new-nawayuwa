@@ -79,6 +79,31 @@ let users: (User & { passwordHash: string })[] = [
     preferredLanguage: 'ne',
   },
   {
+    id: 'user-leader',
+    name: 'Bibek Sharma Adhikari',
+    email: 'leader@nawayuwaclub.org',
+    phone: '+977-9847000001',
+    role: 'chapter_leader',
+    clubWing: 'Bardaghat Chapter Executive',
+    membershipId: 'NYC-2021-002',
+    joinedDate: '2021-02-10',
+    status: 'active',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80',
+    bio: 'Chapter Coordinator for Bardaghat Chapter, leading youth volunteering, civic reporting, and municipal development.',
+    volunteerHours: 260,
+    emergencyContact: '+977-9847000099',
+    passwordHash: 'leader123',
+    onboardingCompleted: true,
+    chapterId: 'chap-1',
+    province: 'Lumbini Province',
+    district: 'Nawalparasi (Bardaghat Susta West)',
+    localLevel: 'Bardaghat Municipality',
+    ward: '16',
+    preferredLanguage: 'ne',
+    attendanceRate: 98,
+    rank: 'Chapter Coordinator',
+  },
+  {
     id: 'user-member',
     name: 'Pradeep Chaudhary',
     email: 'member@nawayuwaclub.org',
@@ -94,11 +119,114 @@ let users: (User & { passwordHash: string })[] = [
     emergencyContact: '+977-9812998877',
     passwordHash: 'member123',
     onboardingCompleted: true,
+    chapterId: 'chap-1',
     province: 'Lumbini Province',
     district: 'Nawalparasi (Bardaghat Susta West)',
     localLevel: 'Bardaghat Municipality',
     ward: '16',
     preferredLanguage: 'ne',
+    attendanceRate: 88,
+    rank: 'Active Volunteer',
+  },
+  {
+    id: 'user-member-2',
+    name: 'Sita Devkota',
+    email: 'sita.devkota@nawayuwaclub.org',
+    phone: '+977-9847123456',
+    role: 'member',
+    clubWing: 'Environment & Climate Action',
+    membershipId: 'NYC-2023-088',
+    joinedDate: '2023-03-20',
+    status: 'active',
+    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80',
+    bio: 'Grassroots volunteer mobilizing high school students for weekly watershed cleaning and tree planting.',
+    volunteerHours: 78,
+    emergencyContact: '+977-9847111222',
+    passwordHash: 'member123',
+    onboardingCompleted: true,
+    chapterId: 'chap-1',
+    province: 'Lumbini Province',
+    district: 'Nawalparasi (Bardaghat Susta West)',
+    localLevel: 'Bardaghat Municipality',
+    ward: '16',
+    preferredLanguage: 'ne',
+    attendanceRate: 96,
+    rank: 'Active Volunteer',
+  },
+  {
+    id: 'user-member-3',
+    name: 'Rohan Shrestha',
+    email: 'rohan.shrestha@nawayuwaclub.org',
+    phone: '+977-9847987654',
+    role: 'member',
+    clubWing: 'Disaster Relief & First Aid',
+    membershipId: 'NYC-2023-112',
+    joinedDate: '2023-05-12',
+    status: 'active',
+    avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300&q=80',
+    bio: 'Certified first-responder coordinating local flood monitoring drills along Daunne foothills.',
+    volunteerHours: 142,
+    emergencyContact: '+977-9847333444',
+    passwordHash: 'member123',
+    onboardingCompleted: true,
+    chapterId: 'chap-1',
+    province: 'Lumbini Province',
+    district: 'Nawalparasi (Bardaghat Susta West)',
+    localLevel: 'Bardaghat Municipality',
+    ward: '16',
+    preferredLanguage: 'ne',
+    attendanceRate: 92,
+    rank: 'Squad Lead',
+  },
+  {
+    id: 'user-member-4',
+    name: 'Kripa Sharma',
+    email: 'kripa.sharma@nawayuwaclub.org',
+    phone: '+977-9812554433',
+    role: 'member',
+    clubWing: 'Youth Education & Literacy',
+    membershipId: 'NYC-2024-031',
+    joinedDate: '2024-01-18',
+    status: 'active',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80',
+    bio: 'Conducts weekend tutoring sessions for government school students in Ward 16 community center.',
+    volunteerHours: 54,
+    emergencyContact: '+977-9812990011',
+    passwordHash: 'member123',
+    onboardingCompleted: true,
+    chapterId: 'chap-1',
+    province: 'Lumbini Province',
+    district: 'Nawalparasi (Bardaghat Susta West)',
+    localLevel: 'Bardaghat Municipality',
+    ward: '16',
+    preferredLanguage: 'ne',
+    attendanceRate: 90,
+    rank: 'Active Volunteer',
+  },
+  {
+    id: 'user-member-5',
+    name: 'Bikash Mahato',
+    email: 'bikash.mahato@nawayuwaclub.org',
+    phone: '+977-9801776655',
+    role: 'member',
+    clubWing: 'Sports & Wellness Wing',
+    membershipId: 'NYC-2024-095',
+    joinedDate: '2024-04-02',
+    status: 'pending',
+    avatar: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=300&q=80',
+    bio: 'Young football enthusiast assisting with community pitch maintenance and tournament logistics.',
+    volunteerHours: 18,
+    emergencyContact: '+977-9801889900',
+    passwordHash: 'member123',
+    onboardingCompleted: true,
+    chapterId: 'chap-1',
+    province: 'Lumbini Province',
+    district: 'Nawalparasi (Bardaghat Susta West)',
+    localLevel: 'Bardaghat Municipality',
+    ward: '16',
+    preferredLanguage: 'ne',
+    attendanceRate: 75,
+    rank: 'General Member',
   },
 ];
 
@@ -471,6 +599,17 @@ let membershipApplications: MembershipApplication[] = [
 async function startServer() {
   const app = express();
   app.use(express.json());
+
+  // Universal CORS headers for seamless preview container requests
+  app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    if (req.method === 'OPTIONS') {
+      return res.sendStatus(200);
+    }
+    next();
+  });
 
   // Helper auth check
   const getUserFromToken = (req: Request): User | null => {
@@ -1507,6 +1646,1829 @@ async function startServer() {
     });
   });
 
+  // ========================================================================
+  // PHASE 11: CHAPTER LEADER BACKEND STATE & ENDPOINTS
+  // ========================================================================
+
+  // In-memory sessions and attendance data for chapters
+  let attendanceSessions = [
+    {
+      id: 'att-sess-1',
+      chapterId: 'chap-1',
+      title: 'Community Path Greening & 1,000 Sapling Plantation',
+      type: 'project' as const,
+      date: '2026-10-12',
+      location: 'Bardaghat Watershed & Pathway, Ward 16',
+      targetHours: 4,
+      totalExpected: 5,
+      totalPresent: 4,
+    },
+    {
+      id: 'att-sess-2',
+      chapterId: 'chap-1',
+      title: 'Bi-weekly Ward Civic Problem Identification Assembly',
+      type: 'meeting' as const,
+      date: '2026-10-05',
+      location: 'Ward 16 Youth Community Hall, Bardaghat',
+      targetHours: 2,
+      totalExpected: 5,
+      totalPresent: 5,
+    },
+    {
+      id: 'att-sess-3',
+      chapterId: 'chap-1',
+      title: 'Urgent Solid Waste Cleanup & Drainage Clearance Drive',
+      type: 'project' as const,
+      date: '2026-10-10',
+      location: 'Postal Highway Roadside, Bardaghat-16',
+      targetHours: 3,
+      totalExpected: 5,
+      totalPresent: 4,
+    },
+  ];
+
+  let attendanceRecords: Record<string, {
+    memberId: string;
+    memberName: string;
+    membershipId: string;
+    avatar?: string;
+    clubWing?: string;
+    status: 'present' | 'absent' | 'late' | 'excused';
+    checkInTime?: string;
+    notes?: string;
+    hoursAwarded: number;
+  }> = {
+    'att-sess-1_user-member': {
+      memberId: 'user-member',
+      memberName: 'Pradeep Chaudhary',
+      membershipId: 'NYC-2022-118',
+      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80',
+      clubWing: 'Cultural & Social Wing',
+      status: 'present',
+      checkInTime: '08:05 AM',
+      notes: 'Planted 35 sal and neem saplings along bank.',
+      hoursAwarded: 4,
+    },
+    'att-sess-1_user-member-2': {
+      memberId: 'user-member-2',
+      memberName: 'Sita Devkota',
+      membershipId: 'NYC-2023-088',
+      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80',
+      clubWing: 'Environment & Climate Action',
+      status: 'present',
+      checkInTime: '07:55 AM',
+      notes: 'Led student group from Ward 16 school.',
+      hoursAwarded: 4,
+    },
+    'att-sess-1_user-member-3': {
+      memberId: 'user-member-3',
+      memberName: 'Rohan Shrestha',
+      membershipId: 'NYC-2023-112',
+      avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300&q=80',
+      clubWing: 'Disaster Relief & First Aid',
+      status: 'present',
+      checkInTime: '08:00 AM',
+      notes: 'Managed tool distribution & hydration stand.',
+      hoursAwarded: 4,
+    },
+    'att-sess-1_user-member-4': {
+      memberId: 'user-member-4',
+      memberName: 'Kripa Sharma',
+      membershipId: 'NYC-2024-031',
+      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80',
+      clubWing: 'Youth Education & Literacy',
+      status: 'present',
+      checkInTime: '08:15 AM',
+      notes: 'Assisted documentation and attendance desk.',
+      hoursAwarded: 4,
+    },
+    'att-sess-1_user-member-5': {
+      memberId: 'user-member-5',
+      memberName: 'Bikash Mahato',
+      membershipId: 'NYC-2024-095',
+      avatar: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=300&q=80',
+      clubWing: 'Sports & Wellness Wing',
+      status: 'absent',
+      notes: 'Exam preparation notice submitted.',
+      hoursAwarded: 0,
+    },
+  };
+
+  let promotionCandidates: Array<{
+    id: string;
+    chapterId: string;
+    memberId: string;
+    memberName: string;
+    membershipId: string;
+    avatar?: string;
+    currentRank: string;
+    proposedRank: string;
+    volunteerHours: number;
+    attendanceRate: number;
+    projectsCompleted: number;
+    nominatedBy: string;
+    nominatedDate: string;
+    status: 'pending' | 'approved' | 'rejected';
+    criteriaMet: string[];
+    allowedActions: string[];
+  }> = [
+    {
+      id: 'prom-1',
+      chapterId: 'chap-1',
+      memberId: 'user-member-2',
+      memberName: 'Sita Devkota',
+      membershipId: 'NYC-2023-088',
+      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80',
+      currentRank: 'Active Volunteer',
+      proposedRank: 'Squad Lead',
+      volunteerHours: 78,
+      attendanceRate: 96,
+      projectsCompleted: 8,
+      nominatedBy: 'Bibek Sharma (Chapter Lead)',
+      nominatedDate: '2026-10-10',
+      status: 'pending',
+      criteriaMet: [
+        '50+ Verified Volunteer Hours',
+        '90%+ Attendance Rate Across Recent Drives',
+        'Demonstrated Field Leadership in Environment Wing',
+      ],
+      allowedActions: ['promotion:approve', 'promotion:reject'],
+    },
+    {
+      id: 'prom-2',
+      chapterId: 'chap-1',
+      memberId: 'user-member-3',
+      memberName: 'Rohan Shrestha',
+      membershipId: 'NYC-2023-112',
+      avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300&q=80',
+      currentRank: 'Squad Lead',
+      proposedRank: 'Wing Coordinator',
+      volunteerHours: 142,
+      attendanceRate: 92,
+      projectsCompleted: 14,
+      nominatedBy: 'Santosh Shrestha (Club President)',
+      nominatedDate: '2026-10-08',
+      status: 'pending',
+      criteriaMet: [
+        '100+ Verified Volunteer Hours',
+        'Led 3+ Chapter Disaster Readiness Field Exercises',
+        'Clean Disciplinary & Fiscal Transparency Record',
+      ],
+      allowedActions: ['promotion:approve', 'promotion:reject'],
+    },
+  ];
+
+  let leaderActivityLogs: Array<{
+    id: string;
+    chapterId: string;
+    action: string;
+    performedBy: string;
+    details: string;
+    timestamp: string;
+    type: 'member' | 'issue' | 'project' | 'attendance' | 'promotion';
+  }> = [
+    {
+      id: 'act-1',
+      chapterId: 'chap-1',
+      action: 'Status Updated',
+      performedBy: 'Bibek Sharma Adhikari (Chapter Lead)',
+      details: 'Updated Issue #iss-2 (Solid Waste Accumulation) to "In Progress" with municipal tractor coordination note.',
+      timestamp: '2026-10-13T10:30:00Z',
+      type: 'issue',
+    },
+    {
+      id: 'act-2',
+      chapterId: 'chap-1',
+      action: 'Attendance Recorded',
+      performedBy: 'Bibek Sharma Adhikari (Chapter Lead)',
+      details: 'Verified attendance for 4 volunteers at Bardaghat Watershed Tree Drive (16 volunteer hours credited).',
+      timestamp: '2026-10-12T16:00:00Z',
+      type: 'attendance',
+    },
+    {
+      id: 'act-3',
+      chapterId: 'chap-1',
+      action: 'Promotion Nominated',
+      performedBy: 'Bibek Sharma Adhikari (Chapter Lead)',
+      details: 'Nominated Sita Devkota for promotion from Active Volunteer to Squad Lead.',
+      timestamp: '2026-10-10T14:15:00Z',
+      type: 'promotion',
+    },
+    {
+      id: 'act-4',
+      chapterId: 'chap-1',
+      action: 'Issue Inspected',
+      performedBy: 'Bibek Sharma Adhikari (Chapter Lead)',
+      details: 'Conducted on-site inspection of Postal Highway clogged culvert with Ward 16 committee.',
+      timestamp: '2026-10-09T11:45:00Z',
+      type: 'issue',
+    },
+  ];
+
+  // Helper to evaluate server-side leader authorization
+  const evaluateLeaderAuth = (req: Request) => {
+    const user = getUserFromToken(req);
+    // Find chapter for this user (defaults to Bardaghat Chapter chap-1 for evaluation)
+    const targetChapter = chapters.find(c => c.id === (user?.chapterId || 'chap-1')) || chapters[0];
+
+    if (!user) {
+      return {
+        authorized: false,
+        reason: 'unauthenticated',
+        chapter: targetChapter,
+        capabilities: {
+          canViewMembers: false,
+          canPromoteMembers: false,
+          canAssignRoles: false,
+          canSuspendMembers: false,
+          canRemoveMembers: false,
+          canManageIssues: false,
+          canUpdateIssueStatus: false,
+          canAddIssueNotes: false,
+          canCreateProjects: false,
+          canMarkAttendance: false,
+          canExportAttendance: false,
+          canManagePromotions: false,
+        },
+        allowedActions: [],
+      };
+    }
+
+    const isLeader = user.role === 'chapter_leader' || user.role === 'admin';
+
+    if (!isLeader) {
+      return {
+        authorized: false,
+        userRole: user.role,
+        userName: user.name,
+        reason: 'insufficient_role_permissions',
+        chapter: targetChapter,
+        capabilities: {
+          canViewMembers: false,
+          canPromoteMembers: false,
+          canAssignRoles: false,
+          canSuspendMembers: false,
+          canRemoveMembers: false,
+          canManageIssues: false,
+          canUpdateIssueStatus: false,
+          canAddIssueNotes: false,
+          canCreateProjects: false,
+          canMarkAttendance: false,
+          canExportAttendance: false,
+          canManagePromotions: false,
+        },
+        allowedActions: [],
+      };
+    }
+
+    // Role-authorized leader: return full server capabilities & explicit allowedActions
+    const capabilities = {
+      canViewMembers: true,
+      canPromoteMembers: true,
+      canAssignRoles: true,
+      canSuspendMembers: true,
+      canRemoveMembers: user.role === 'admin', // destructive removal restricted to admins
+      canManageIssues: true,
+      canUpdateIssueStatus: true,
+      canAddIssueNotes: true,
+      canCreateProjects: true,
+      canMarkAttendance: true,
+      canExportAttendance: true,
+      canManagePromotions: true,
+    };
+
+    const allowedActions = [
+      'member:view',
+      'member:assign_wing',
+      'member:promote',
+      'member:suspend',
+      ...(user.role === 'admin' ? ['member:remove'] : []),
+      'issue:view',
+      'issue:review',
+      'issue:update_status',
+      'issue:add_note',
+      'project:create',
+      'attendance:record',
+      'attendance:update',
+      'attendance:export',
+      'promotion:approve',
+      'promotion:reject',
+      'promotion:nominate',
+    ];
+
+    return {
+      authorized: true,
+      userRole: user.role,
+      userName: user.name,
+      chapter: targetChapter,
+      capabilities,
+      allowedActions,
+    };
+  };
+
+  // GET /api/leader/context
+  app.get('/api/leader/context', (req: Request, res: Response) => {
+    const auth = evaluateLeaderAuth(req);
+    return res.json(auth);
+  });
+
+  // GET /api/leader/dashboard
+  app.get('/api/leader/dashboard', (req: Request, res: Response) => {
+    const auth = evaluateLeaderAuth(req);
+    if (!auth.authorized) {
+      return res.status(403).json({
+        error: 'Access denied. Chapter leadership authorization required.',
+        reason: auth.reason,
+      });
+    }
+
+    const chapterMembers = users.filter(u => u.chapterId === auth.chapter.id || (!u.chapterId && u.role === 'member'));
+    const chapterIssues = issues.filter(i =>
+      i.location.toLowerCase().includes(auth.chapter.name.toLowerCase().replace(' chapter', '')) ||
+      (i.district && auth.chapter.district.includes(i.district))
+    );
+    const chapterProjects = communityProjects.filter(p =>
+      p.location.toLowerCase().includes(auth.chapter.name.toLowerCase().replace(' chapter', '')) ||
+      p.location.toLowerCase().includes('bardaghat')
+    );
+
+    const totalVolunteerHours = chapterMembers.reduce((acc, curr) => acc + (curr.volunteerHours || 0), 0);
+    const averageAttendance = Math.round(
+      chapterMembers.reduce((acc, curr) => acc + (curr.attendanceRate || 85), 0) / (chapterMembers.length || 1)
+    );
+
+    const pendingActions = [
+      {
+        id: 'pend-1',
+        type: 'issue_review' as const,
+        title: 'Review Reported Solid Waste Culvert Clog',
+        description: 'New photographs and resident reports in Ward 16 await municipal coordination.',
+        targetId: 'iss-2',
+        route: '/leader/issues',
+        priority: 'urgent' as const,
+        createdAt: '2026-10-13T08:00:00Z',
+        allowedActions: ['issue:review', 'issue:update_status'],
+      },
+      {
+        id: 'pend-2',
+        type: 'promotion_approval' as const,
+        title: 'Approve 2 Pending Volunteer Promotions',
+        description: 'Sita Devkota & Rohan Shrestha have met required hours and attendance thresholds.',
+        targetId: 'prom-1',
+        route: '/leader/promotions',
+        priority: 'high' as const,
+        createdAt: '2026-10-11T12:00:00Z',
+        allowedActions: ['promotion:approve', 'promotion:reject'],
+      },
+      {
+        id: 'pend-3',
+        type: 'attendance_due' as const,
+        title: 'Finalize Attendance for Watershed Drive',
+        description: 'Session records logged. 1 attendee marked absent pending verification.',
+        targetId: 'att-sess-1',
+        route: '/leader/attendance',
+        priority: 'normal' as const,
+        createdAt: '2026-10-12T17:00:00Z',
+        allowedActions: ['attendance:record', 'attendance:update'],
+      },
+    ];
+
+    const cleanMembers = chapterMembers.map(m => ({
+      id: m.id,
+      name: m.name,
+      membershipId: m.membershipId,
+      role: m.role,
+      clubWing: m.clubWing,
+      status: m.status,
+      volunteerHours: m.volunteerHours || 0,
+      avatar: m.avatar,
+      rank: m.rank || 'Active Volunteer',
+      ward: m.ward || '16',
+    }));
+
+    return res.json({
+      chapter: auth.chapter,
+      capabilities: auth.capabilities,
+      allowedActions: auth.allowedActions,
+      chapterActivity: {
+        totalMembers: chapterMembers.length,
+        activeProjects: chapterProjects.length,
+        openIssues: chapterIssues.filter(i => i.status !== 'Resolved').length,
+        resolvedIssues: chapterIssues.filter(i => i.status === 'Resolved').length,
+        volunteerHoursLogged: totalVolunteerHours,
+        averageAttendanceRate: averageAttendance,
+      },
+      members: cleanMembers,
+      projects: chapterProjects.map(p => ({
+        ...p,
+        volunteersRegistered: p.participantsCount || 12,
+        targetVolunteers: 25,
+      })),
+      issues: chapterIssues,
+      pendingActions,
+      recentActivity: leaderActivityLogs,
+    });
+  });
+
+  // GET /api/leader/members
+  app.get('/api/leader/members', (req: Request, res: Response) => {
+    const auth = evaluateLeaderAuth(req);
+    if (!auth.authorized) {
+      return res.status(403).json({ error: 'Unauthorized to view chapter members' });
+    }
+
+    const chapterMembers = users.filter(u => u.chapterId === auth.chapter.id || (!u.chapterId && u.role === 'member'));
+
+    const membersWithPermissions = chapterMembers.map(m => ({
+      id: m.id,
+      name: m.name,
+      email: m.email,
+      phone: m.phone || '+977-9847000000',
+      membershipId: m.membershipId,
+      role: m.role,
+      clubWing: m.clubWing,
+      status: m.status,
+      joinedDate: m.joinedDate,
+      volunteerHours: m.volunteerHours || 0,
+      avatar: m.avatar,
+      ward: m.ward || '16',
+      attendanceRate: m.attendanceRate || 85,
+      currentRank: m.rank || (m.volunteerHours && m.volunteerHours > 100 ? 'Squad Lead' : 'Active Volunteer'),
+      allowedActions: [
+        'view_contact',
+        'assign_wing',
+        'promote',
+        m.status === 'active' ? 'suspend' : 'activate',
+        ...(auth.capabilities.canRemoveMembers ? ['remove'] : []),
+      ],
+    }));
+
+    return res.json({
+      chapter: auth.chapter,
+      members: membersWithPermissions,
+      allowedActions: auth.allowedActions,
+      capabilities: auth.capabilities,
+    });
+  });
+
+  // POST /api/leader/members/:id/action
+  app.post('/api/leader/members/:id/action', (req: Request, res: Response) => {
+    const auth = evaluateLeaderAuth(req);
+    if (!auth.authorized) {
+      return res.status(403).json({ error: 'Unauthorized' });
+    }
+
+    const { id } = req.params;
+    const { action, newWing, newStatus } = req.body;
+
+    const targetUser = users.find(u => u.id === id);
+    if (!targetUser) {
+      return res.status(404).json({ error: 'Member not found' });
+    }
+
+    // Verify action is allowed
+    if (action === 'remove' && !auth.capabilities.canRemoveMembers) {
+      return res.status(403).json({ error: 'Removal of members requires Platform Administrator privilege' });
+    }
+
+    if (action === 'assign_wing') {
+      if (!newWing) return res.status(400).json({ error: 'Target wing is required' });
+      targetUser.clubWing = newWing;
+      leaderActivityLogs.unshift({
+        id: `act-${Date.now()}`,
+        chapterId: auth.chapter.id,
+        action: 'Wing Assigned',
+        performedBy: `${auth.userName} (${auth.userRole})`,
+        details: `Reassigned ${targetUser.name} to "${newWing}".`,
+        timestamp: new Date().toISOString(),
+        type: 'member',
+      });
+      return res.json({ message: `Successfully assigned ${targetUser.name} to ${newWing}`, member: targetUser });
+    }
+
+    if (action === 'suspend') {
+      targetUser.status = 'suspended';
+      leaderActivityLogs.unshift({
+        id: `act-${Date.now()}`,
+        chapterId: auth.chapter.id,
+        action: 'Member Suspended',
+        performedBy: `${auth.userName} (${auth.userRole})`,
+        details: `Suspended membership for ${targetUser.name}.`,
+        timestamp: new Date().toISOString(),
+        type: 'member',
+      });
+      return res.json({ message: `Suspended member ${targetUser.name}`, member: targetUser });
+    }
+
+    if (action === 'activate') {
+      targetUser.status = 'active';
+      leaderActivityLogs.unshift({
+        id: `act-${Date.now()}`,
+        chapterId: auth.chapter.id,
+        action: 'Member Activated',
+        performedBy: `${auth.userName} (${auth.userRole})`,
+        details: `Re-activated membership for ${targetUser.name}.`,
+        timestamp: new Date().toISOString(),
+        type: 'member',
+      });
+      return res.json({ message: `Activated member ${targetUser.name}`, member: targetUser });
+    }
+
+    if (action === 'remove') {
+      const idx = users.findIndex(u => u.id === id);
+      if (idx !== -1) {
+        users.splice(idx, 1);
+        leaderActivityLogs.unshift({
+          id: `act-${Date.now()}`,
+          chapterId: auth.chapter.id,
+          action: 'Member Removed',
+          performedBy: `${auth.userName} (${auth.userRole})`,
+          details: `Permanently removed member ${targetUser.name} from club roster.`,
+          timestamp: new Date().toISOString(),
+          type: 'member',
+        });
+        return res.json({ message: `Removed member ${targetUser.name} from chapter` });
+      }
+    }
+
+    return res.status(400).json({ error: 'Unknown member action' });
+  });
+
+  // GET /api/leader/issues
+  app.get('/api/leader/issues', (req: Request, res: Response) => {
+    const auth = evaluateLeaderAuth(req);
+    if (!auth.authorized) {
+      return res.status(403).json({ error: 'Unauthorized to review chapter issues' });
+    }
+
+    const chapterIssues = issues.filter(i =>
+      i.location.toLowerCase().includes(auth.chapter.name.toLowerCase().replace(' chapter', '')) ||
+      (i.district && auth.chapter.district.includes(i.district))
+    );
+
+    return res.json({
+      chapter: auth.chapter,
+      issues: chapterIssues,
+      allowedActions: ['issue:view', 'issue:review', 'issue:update_status', 'issue:add_note'],
+      capabilities: auth.capabilities,
+      statusOptions: ['Reported', 'Under Review', 'Verified', 'In Progress', 'Resolved'],
+    });
+  });
+
+  // POST /api/leader/issues/:id/status
+  app.post('/api/leader/issues/:id/status', (req: Request, res: Response) => {
+    const auth = evaluateLeaderAuth(req);
+    if (!auth.authorized || !auth.capabilities.canUpdateIssueStatus) {
+      return res.status(403).json({ error: 'Unauthorized to update issue status' });
+    }
+
+    const { id } = req.params;
+    const { status, notes } = req.body;
+
+    const targetIssue = issues.find(i => i.id === id);
+    if (!targetIssue) {
+      return res.status(404).json({ error: 'Issue not found' });
+    }
+
+    const validStatuses = ['Reported', 'Under Review', 'Verified', 'In Progress', 'Resolved'];
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({ error: 'Invalid issue status' });
+    }
+
+    const oldStatus = targetIssue.status;
+    targetIssue.status = status;
+
+    // Add note to timeline
+    if (!targetIssue.timeline) targetIssue.timeline = [];
+    targetIssue.timeline.push({
+      step: status,
+      title: `Status changed to ${status}`,
+      description: notes || `Updated by Chapter Leader ${auth.userName}.`,
+      date: new Date().toISOString().split('T')[0],
+      completed: true,
+    });
+
+    if (notes) {
+      targetIssue.actionTaken = `${targetIssue.actionTaken || ''} [${status}]: ${notes}`.trim();
+    }
+
+    leaderActivityLogs.unshift({
+      id: `act-${Date.now()}`,
+      chapterId: auth.chapter.id,
+      action: 'Issue Status Updated',
+      performedBy: `${auth.userName} (${auth.userRole})`,
+      details: `Changed "${targetIssue.title}" status from "${oldStatus}" to "${status}".`,
+      timestamp: new Date().toISOString(),
+      type: 'issue',
+    });
+
+    return res.json({
+      message: `Issue status updated to ${status}`,
+      issue: targetIssue,
+    });
+  });
+
+  // POST /api/leader/issues/:id/notes
+  app.post('/api/leader/issues/:id/notes', (req: Request, res: Response) => {
+    const auth = evaluateLeaderAuth(req);
+    if (!auth.authorized || !auth.capabilities.canAddIssueNotes) {
+      return res.status(403).json({ error: 'Unauthorized to add issue notes' });
+    }
+
+    const { id } = req.params;
+    const { note } = req.body;
+
+    if (!note || !note.trim()) {
+      return res.status(400).json({ error: 'Note text is required' });
+    }
+
+    const targetIssue = issues.find(i => i.id === id);
+    if (!targetIssue) {
+      return res.status(404).json({ error: 'Issue not found' });
+    }
+
+    if (!targetIssue.timeline) targetIssue.timeline = [];
+    targetIssue.timeline.push({
+      step: 'Field Update',
+      title: 'Chapter Action Note',
+      description: note.trim(),
+      date: new Date().toISOString().split('T')[0],
+      completed: true,
+    });
+
+    targetIssue.actionTaken = `${targetIssue.actionTaken || ''} ${note.trim()}`.trim();
+
+    leaderActivityLogs.unshift({
+      id: `act-${Date.now()}`,
+      chapterId: auth.chapter.id,
+      action: 'Field Note Appended',
+      performedBy: `${auth.userName} (${auth.userRole})`,
+      details: `Added field progress note to issue "${targetIssue.title}".`,
+      timestamp: new Date().toISOString(),
+      type: 'issue',
+    });
+
+    return res.json({
+      message: 'Field action note added successfully',
+      issue: targetIssue,
+    });
+  });
+
+  // POST /api/leader/projects/new
+  app.post('/api/leader/projects/new', (req: Request, res: Response) => {
+    const auth = evaluateLeaderAuth(req);
+    if (!auth.authorized || !auth.capabilities.canCreateProjects) {
+      return res.status(403).json({ error: 'Unauthorized to create projects' });
+    }
+
+    const {
+      name,
+      description,
+      category,
+      location,
+      date,
+      targetVolunteers,
+      requiredSkills,
+      volunteerHoursCredit,
+      prerequisites,
+      coordinatorNotes,
+      images,
+      imageUrl,
+    } = req.body;
+
+    if (!name || !description || !category || !location || !date) {
+      return res.status(400).json({
+        error: 'Name, description, category, location, and date are required.',
+      });
+    }
+
+    const chosenImage = imageUrl || (images && images.length > 0 ? images[0] : '/src/assets/images/project_clean_water_1791953725518.jpg');
+
+    const newProject = {
+      id: `proj-${Date.now()}`,
+      name,
+      description,
+      category,
+      location,
+      date,
+      imageUrl: chosenImage,
+      images: images && images.length > 0 ? images : [chosenImage],
+      status: 'Upcoming' as const,
+      participantsCount: 1, // Leader is automatically enrolled
+      isParticipating: true,
+      participationInfo: {
+        targetVolunteers: Number(targetVolunteers) || 20,
+        requiredSkills: requiredSkills || 'Youth enthusiasm and civic commitment',
+        volunteerHoursCredit: Number(volunteerHoursCredit) || 4,
+        prerequisites: prerequisites || 'Open to all registered chapter members',
+        coordinatorNotes: coordinatorNotes || `Coordinated by ${auth.userName}`,
+      },
+    };
+
+    communityProjects.unshift(newProject);
+
+    // Auto-create an attendance session for this project
+    const newSession = {
+      id: `att-sess-${Date.now()}`,
+      chapterId: auth.chapter.id,
+      title: newProject.name,
+      type: 'project' as const,
+      date: newProject.date,
+      location: newProject.location,
+      targetHours: Number(volunteerHoursCredit) || 4,
+      totalExpected: users.filter(u => u.chapterId === auth.chapter.id).length,
+      totalPresent: 0,
+    };
+    attendanceSessions.unshift(newSession);
+
+    leaderActivityLogs.unshift({
+      id: `act-${Date.now()}`,
+      chapterId: auth.chapter.id,
+      action: 'Project Created',
+      performedBy: `${auth.userName} (${auth.userRole})`,
+      details: `Launched community project "${name}" in ${location}.`,
+      timestamp: new Date().toISOString(),
+      type: 'project',
+    });
+
+    return res.status(201).json({
+      message: 'Chapter project created successfully',
+      project: newProject,
+    });
+  });
+
+  // GET /api/leader/attendance
+  app.get('/api/leader/attendance', (req: Request, res: Response) => {
+    const auth = evaluateLeaderAuth(req);
+    if (!auth.authorized || !auth.capabilities.canMarkAttendance) {
+      return res.status(403).json({ error: 'Unauthorized to access attendance module' });
+    }
+
+    const chapterSessions = attendanceSessions.filter(s => s.chapterId === auth.chapter.id);
+    const activeSessionId = (req.query.sessionId as string) || (chapterSessions[0] ? chapterSessions[0].id : '');
+    const activeSession = chapterSessions.find(s => s.id === activeSessionId) || chapterSessions[0];
+
+    const chapterMembers = users.filter(u => u.chapterId === auth.chapter.id || (!u.chapterId && u.role === 'member'));
+
+    const records = chapterMembers.map(m => {
+      const key = `${activeSession?.id}_${m.id}`;
+      const existing = attendanceRecords[key];
+      return existing || {
+        memberId: m.id,
+        memberName: m.name,
+        membershipId: m.membershipId,
+        avatar: m.avatar,
+        clubWing: m.clubWing,
+        status: 'absent' as const,
+        hoursAwarded: 0,
+      };
+    });
+
+    return res.json({
+      chapter: auth.chapter,
+      sessions: chapterSessions,
+      activeSessionId: activeSession ? activeSession.id : '',
+      records,
+      allowedActions: ['attendance:mark', 'attendance:update', 'attendance:export'],
+      capabilities: auth.capabilities,
+    });
+  });
+
+  // POST /api/leader/attendance/mark
+  app.post('/api/leader/attendance/mark', (req: Request, res: Response) => {
+    const auth = evaluateLeaderAuth(req);
+    if (!auth.authorized || !auth.capabilities.canMarkAttendance) {
+      return res.status(403).json({ error: 'Unauthorized to mark attendance' });
+    }
+
+    const { sessionId, records } = req.body;
+    if (!sessionId || !Array.isArray(records)) {
+      return res.status(400).json({ error: 'Session ID and records array are required' });
+    }
+
+    const session = attendanceSessions.find(s => s.id === sessionId);
+    if (!session) {
+      return res.status(404).json({ error: 'Attendance session not found' });
+    }
+
+    let presentCount = 0;
+
+    for (const item of records) {
+      const key = `${sessionId}_${item.memberId}`;
+      const user = users.find(u => u.id === item.memberId);
+      const isPresent = item.status === 'present';
+      const hours = isPresent ? session.targetHours : item.status === 'late' ? Math.round(session.targetHours * 0.75) : 0;
+
+      if (isPresent || item.status === 'late') {
+        presentCount += 1;
+      }
+
+      // If newly marked present, update volunteer hours
+      if (user && isPresent && (!attendanceRecords[key] || attendanceRecords[key].status !== 'present')) {
+        user.volunteerHours = (user.volunteerHours || 0) + session.targetHours;
+      }
+
+      attendanceRecords[key] = {
+        memberId: item.memberId,
+        memberName: user ? user.name : 'Member',
+        membershipId: user ? user.membershipId : 'NYC-000',
+        avatar: user ? user.avatar : '',
+        clubWing: user ? user.clubWing : 'General',
+        status: item.status,
+        checkInTime: item.status === 'present' ? (attendanceRecords[key]?.checkInTime || 'Checked in') : undefined,
+        notes: item.notes || '',
+        hoursAwarded: hours,
+      };
+    }
+
+    session.totalPresent = presentCount;
+
+    leaderActivityLogs.unshift({
+      id: `act-${Date.now()}`,
+      chapterId: auth.chapter.id,
+      action: 'Attendance Saved',
+      performedBy: `${auth.userName} (${auth.userRole})`,
+      details: `Saved attendance for "${session.title}" (${presentCount} present out of ${records.length} rostered).`,
+      timestamp: new Date().toISOString(),
+      type: 'attendance',
+    });
+
+    return res.json({
+      message: 'Attendance saved successfully',
+      session,
+      presentCount,
+    });
+  });
+
+  // GET /api/leader/promotions
+  app.get('/api/leader/promotions', (req: Request, res: Response) => {
+    const auth = evaluateLeaderAuth(req);
+    if (!auth.authorized || !auth.capabilities.canManagePromotions) {
+      return res.status(403).json({ error: 'Unauthorized to manage member promotions' });
+    }
+
+    const chapterCandidates = promotionCandidates.filter(p => p.chapterId === auth.chapter.id);
+
+    return res.json({
+      chapter: auth.chapter,
+      candidates: chapterCandidates,
+      allowedActions: ['promotion:approve', 'promotion:reject', 'promotion:nominate'],
+      capabilities: auth.capabilities,
+      rankHierarchy: [
+        'General Member',
+        'Active Volunteer',
+        'Squad Lead',
+        'Wing Coordinator',
+        'Deputy Chapter Lead',
+        'Chapter Coordinator',
+      ],
+    });
+  });
+
+  // POST /api/leader/promotions/:id/action
+  app.post('/api/leader/promotions/:id/action', (req: Request, res: Response) => {
+    const auth = evaluateLeaderAuth(req);
+    if (!auth.authorized || !auth.capabilities.canManagePromotions) {
+      return res.status(403).json({ error: 'Unauthorized to execute promotion actions' });
+    }
+
+    const { id } = req.params;
+    const { action, memberId, proposedRank, reason } = req.body;
+
+    if (action === 'nominate') {
+      if (!memberId || !proposedRank) {
+        return res.status(400).json({ error: 'Member and proposed rank are required for nomination' });
+      }
+      const member = users.find(u => u.id === memberId);
+      if (!member) return res.status(404).json({ error: 'Member not found' });
+
+      const newCandidate = {
+        id: `prom-${Date.now()}`,
+        chapterId: auth.chapter.id,
+        memberId: member.id,
+        memberName: member.name,
+        membershipId: member.membershipId,
+        avatar: member.avatar,
+        currentRank: member.rank || 'Active Volunteer',
+        proposedRank,
+        volunteerHours: member.volunteerHours || 0,
+        attendanceRate: member.attendanceRate || 85,
+        projectsCompleted: 5,
+        nominatedBy: `${auth.userName} (${auth.userRole})`,
+        nominatedDate: new Date().toISOString().split('T')[0],
+        status: 'pending' as const,
+        criteriaMet: [
+          `${member.volunteerHours || 0} Hours Logged`,
+          `${member.attendanceRate || 85}% Attendance Recorded`,
+          reason || 'Recommended by Chapter Leadership',
+        ],
+        allowedActions: ['promotion:approve', 'promotion:reject'],
+      };
+
+      promotionCandidates.unshift(newCandidate);
+
+      leaderActivityLogs.unshift({
+        id: `act-${Date.now()}`,
+        chapterId: auth.chapter.id,
+        action: 'Promotion Nominated',
+        performedBy: `${auth.userName} (${auth.userRole})`,
+        details: `Nominated ${member.name} for "${proposedRank}".`,
+        timestamp: new Date().toISOString(),
+        type: 'promotion',
+      });
+
+      return res.status(201).json({
+        message: `Nominated ${member.name} for ${proposedRank}`,
+        candidate: newCandidate,
+      });
+    }
+
+    const candidate = promotionCandidates.find(p => p.id === id);
+    if (!candidate) {
+      return res.status(404).json({ error: 'Promotion candidate not found' });
+    }
+
+    if (action === 'approve') {
+      candidate.status = 'approved';
+      const user = users.find(u => u.id === candidate.memberId);
+      if (user) {
+        user.rank = candidate.proposedRank;
+      }
+      leaderActivityLogs.unshift({
+        id: `act-${Date.now()}`,
+        chapterId: auth.chapter.id,
+        action: 'Promotion Approved',
+        performedBy: `${auth.userName} (${auth.userRole})`,
+        details: `Approved promotion for ${candidate.memberName} to "${candidate.proposedRank}".`,
+        timestamp: new Date().toISOString(),
+        type: 'promotion',
+      });
+      return res.json({
+        message: `Successfully promoted ${candidate.memberName} to ${candidate.proposedRank}!`,
+        candidate,
+      });
+    }
+
+    if (action === 'reject') {
+      candidate.status = 'rejected';
+      leaderActivityLogs.unshift({
+        id: `act-${Date.now()}`,
+        chapterId: auth.chapter.id,
+        action: 'Promotion Rejected',
+        performedBy: `${auth.userName} (${auth.userRole})`,
+        details: `Declined promotion for ${candidate.memberName}.`,
+        timestamp: new Date().toISOString(),
+        type: 'promotion',
+      });
+      return res.json({
+        message: `Declined promotion for ${candidate.memberName}`,
+        candidate,
+      });
+    }
+
+    return res.status(400).json({ error: 'Invalid promotion action' });
+  });
+
+  // ========================================================================
+  // PHASE 12: PLATFORM ADMINISTRATION BACKEND STATE & ENDPOINTS
+  // ========================================================================
+
+  let moderationQueue: Array<{
+    id: string;
+    itemType: 'issue' | 'comment' | 'member_profile' | 'project_submission';
+    targetId: string;
+    targetTitle: string;
+    reportedReason: string;
+    reportedBy: string;
+    reportedDate: string;
+    status: 'pending' | 'reviewed' | 'quarantined' | 'dismissed' | 'deleted';
+    riskLevel: 'low' | 'medium' | 'high' | 'critical';
+    excerpt: string;
+    allowedActions: string[];
+  }> = [
+    {
+      id: 'mod-1',
+      itemType: 'issue',
+      targetId: 'iss-mod-1',
+      targetTitle: 'Commercial advertising banner reported as drainage hazard',
+      reportedReason: 'Suspected commercial business advertising disguised as municipal flood risk complaint.',
+      reportedBy: 'Kishore Jha (Civic Auditor)',
+      reportedDate: '2026-10-14',
+      status: 'pending',
+      riskLevel: 'medium',
+      excerpt: 'Special 50% discount offers on groceries outside the private commercial warehouse...',
+      allowedActions: ['approve_content', 'dismiss_flag', 'quarantine_content', 'delete_content', 'warn_user'],
+    },
+    {
+      id: 'mod-2',
+      itemType: 'comment',
+      targetId: 'iss-1-comm-4',
+      targetTitle: 'Abusive language on Janakpur Water Pipeline report',
+      reportedReason: 'Harassment and aggressive personal threats directed at ward utility technicians.',
+      reportedBy: 'Automated Language Filter',
+      reportedDate: '2026-10-13',
+      status: 'pending',
+      riskLevel: 'high',
+      excerpt: 'Contains flagged hostile language targeting municipal utility repair team members.',
+      allowedActions: ['approve_content', 'dismiss_flag', 'quarantine_content', 'delete_content', 'suspend_user'],
+    },
+    {
+      id: 'mod-3',
+      itemType: 'member_profile',
+      targetId: 'user-unverified-9',
+      targetTitle: 'Suspicious membership submission: duplicate citizenship ID',
+      reportedReason: 'Duplicate phone number and invalid citizenship image scan submitted during onboarding.',
+      reportedBy: 'System Integrity Check',
+      reportedDate: '2026-10-12',
+      status: 'quarantined',
+      riskLevel: 'critical',
+      excerpt: 'Multiple consecutive registration submissions from flagged external IP address.',
+      allowedActions: ['approve_content', 'dismiss_flag', 'delete_content', 'suspend_user'],
+    },
+  ];
+
+  let platformConfig = {
+    organizationName: 'Nawa Yuwa Club (Central Committee)',
+    helplinePhone: '+977-9857012345',
+    supportEmail: 'central@nawayuwaclub.org',
+    currentFiscalYear: '2081/82 BS',
+    autoVerifyTrustedReporters: true,
+    requirePhoneOtpForReporting: false,
+    publicFinancialTransparency: true,
+    allowDirectMemberApplications: true,
+    minVolunteerHoursForSquadLead: 50,
+    minVolunteerHoursForCoordinator: 100,
+    maxUploadFileSizeMb: 10,
+    flaggingKeywords: ['spam', 'buy now', 'promo', 'gambling', 'offensive', 'scam'],
+  };
+
+  let auditRecords: Array<{
+    id: string;
+    actor: {
+      name: string;
+      role: string;
+      identifier: string;
+    };
+    action: string;
+    resource: string;
+    date: string;
+    result: 'SUCCESS' | 'DENIED' | 'FLAGGED';
+    details: string;
+  }> = [
+    {
+      id: 'aud-1',
+      actor: { name: 'Santosh Shrestha', role: 'admin', identifier: 'NYC-2005-001' },
+      action: 'PROMOTION_APPROVED',
+      resource: 'User: Rohan Shrestha (Wing Coordinator)',
+      date: '2026-10-14T09:12:00Z',
+      result: 'SUCCESS',
+      details: 'Executive presidential confirmation of regional leadership promotion.',
+    },
+    {
+      id: 'aud-2',
+      actor: { name: 'Santosh Shrestha', role: 'admin', identifier: 'NYC-2005-001' },
+      action: 'CONFIG_UPDATED',
+      resource: 'Settings: Fiscal Transparency',
+      date: '2026-10-13T14:40:00Z',
+      result: 'SUCCESS',
+      details: 'Updated public transparency disclosures and financial balance sheet rules.',
+    },
+    {
+      id: 'aud-3',
+      actor: { name: 'Bibek Sharma Adhikari', role: 'chapter_leader', identifier: 'NYC-2021-002' },
+      action: 'ISSUE_STATUS_UPDATE',
+      resource: 'Issue #iss-2',
+      date: '2026-10-13T10:30:00Z',
+      result: 'SUCCESS',
+      details: 'Updated Postal Highway issue status to "In Progress".',
+    },
+    {
+      id: 'aud-4',
+      actor: { name: 'Security Monitor', role: 'system', identifier: 'SYS-INTEGRITY' },
+      action: 'MODERATION_FLAGGED',
+      resource: 'Issue #iss-mod-1',
+      date: '2026-10-13T08:15:00Z',
+      result: 'FLAGGED',
+      details: 'Automated filter quarantined suspected promotional link.',
+    },
+    {
+      id: 'aud-5',
+      actor: { name: 'Unauthenticated Client', role: 'anonymous', identifier: 'ANON-CLIENT' },
+      action: 'ADMIN_ROUTE_ACCESS_ATTEMPT',
+      resource: '/api/admin/config',
+      date: '2026-10-12T22:04:00Z',
+      result: 'DENIED',
+      details: 'Blocked unauthorized settings mutation without Bearer credentials.',
+    },
+  ];
+
+  const appendAuditLog = (
+    actor: { name: string; role: string; identifier: string },
+    action: string,
+    resource: string,
+    result: 'SUCCESS' | 'DENIED' | 'FLAGGED',
+    details: string
+  ) => {
+    auditRecords.unshift({
+      id: `aud-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+      actor,
+      action,
+      resource,
+      date: new Date().toISOString(),
+      result,
+      details,
+    });
+  };
+
+  const evaluateAdminAuth = (req: Request) => {
+    const user = getUserFromToken(req);
+
+    if (!user) {
+      appendAuditLog(
+        { name: 'Unauthenticated Visitor', role: 'guest', identifier: 'ANON' },
+        'ADMIN_AUTH_CHECK',
+        req.path,
+        'DENIED',
+        'Authentication token missing or invalid.'
+      );
+      return {
+        authorized: false,
+        reason: 'unauthenticated',
+        capabilities: {
+          canManageChapters: false,
+          canCreateChapter: false,
+          canUpdateChapter: false,
+          canPauseChapter: false,
+          canManagePromotions: false,
+          canApprovePromotions: false,
+          canRevokePromotions: false,
+          canManageModeration: false,
+          canQuarantineContent: false,
+          canDeleteContent: false,
+          canManageConfig: false,
+          canViewAudit: false,
+          canExportAudit: false,
+        },
+        allowedActions: [],
+      };
+    }
+
+    if (user.role !== 'admin') {
+      appendAuditLog(
+        { name: user.name, role: user.role, identifier: user.membershipId || user.id },
+        'ADMIN_AUTH_CHECK',
+        req.path,
+        'DENIED',
+        `User with role "${user.role}" attempted platform admin access.`
+      );
+      return {
+        authorized: false,
+        userRole: user.role,
+        userName: user.name,
+        reason: 'insufficient_role_permissions',
+        capabilities: {
+          canManageChapters: false,
+          canCreateChapter: false,
+          canUpdateChapter: false,
+          canPauseChapter: false,
+          canManagePromotions: false,
+          canApprovePromotions: false,
+          canRevokePromotions: false,
+          canManageModeration: false,
+          canQuarantineContent: false,
+          canDeleteContent: false,
+          canManageConfig: false,
+          canViewAudit: false,
+          canExportAudit: false,
+        },
+        allowedActions: [],
+      };
+    }
+
+    // Role is admin: granted full central platform capabilities
+    const capabilities = {
+      canManageChapters: true,
+      canCreateChapter: true,
+      canUpdateChapter: true,
+      canPauseChapter: true,
+      canManagePromotions: true,
+      canApprovePromotions: true,
+      canRevokePromotions: true,
+      canManageModeration: true,
+      canQuarantineContent: true,
+      canDeleteContent: true,
+      canManageConfig: true,
+      canViewAudit: true,
+      canExportAudit: true,
+    };
+
+    const allowedActions = [
+      'chapter:create',
+      'chapter:edit',
+      'chapter:pause',
+      'chapter:activate',
+      'chapter:archive',
+      'promotion:approve',
+      'promotion:reject',
+      'promotion:revoke',
+      'moderation:approve',
+      'moderation:dismiss',
+      'moderation:quarantine',
+      'moderation:delete',
+      'moderation:warn_user',
+      'moderation:suspend_user',
+      'config:update',
+      'audit:view',
+      'audit:export',
+    ];
+
+    return {
+      authorized: true,
+      userRole: user.role,
+      userName: user.name,
+      capabilities,
+      allowedActions,
+    };
+  };
+
+  // GET /api/admin/context
+  app.get('/api/admin/context', (req: Request, res: Response) => {
+    const auth = evaluateAdminAuth(req);
+    return res.json(auth);
+  });
+
+  // GET /api/admin/dashboard
+  app.get('/api/admin/dashboard', (req: Request, res: Response) => {
+    const auth = evaluateAdminAuth(req);
+    if (!auth.authorized) {
+      return res.status(403).json({
+        error: 'Access denied. Central Platform Administration privileges required.',
+        reason: auth.reason,
+      });
+    }
+
+    const provinces = new Set(chapters.map(c => c.province));
+    const activeChaps = chapters.filter(c => c.status !== 'paused');
+    const openIss = issues.filter(i => i.status !== 'Resolved');
+    const resIss = issues.filter(i => i.status === 'Resolved');
+    const pendingMods = moderationQueue.filter(m => m.status === 'pending');
+
+    const adminPendingActions = [
+      {
+        id: 'adm-pend-1',
+        type: 'moderation' as const,
+        title: `${pendingMods.length} Flagged Items in Moderation Queue`,
+        description: 'Commercial spam report and flagged hostile comments require administrator determination.',
+        targetId: 'mod-1',
+        route: '/admin/moderation',
+        priority: 'urgent' as const,
+        createdAt: '2026-10-14T07:00:00Z',
+        allowedActions: ['moderation:quarantine', 'moderation:dismiss'],
+      },
+      {
+        id: 'adm-pend-2',
+        type: 'promotion_final' as const,
+        title: 'Executive Confirmation for 2 Regional Promotions',
+        description: 'Sita Devkota (Squad Lead) & Rohan Shrestha (Wing Coordinator) submitted by Bardaghat Chapter.',
+        targetId: 'prom-1',
+        route: '/admin/promotions',
+        priority: 'high' as const,
+        createdAt: '2026-10-13T16:00:00Z',
+        allowedActions: ['promotion:approve', 'promotion:reject'],
+      },
+      {
+        id: 'adm-pend-3',
+        type: 'chapter_approval' as const,
+        title: 'Quarterly Audit Review for 6 Active Chapters',
+        description: 'Verify meeting schedules, coordinator certifications, and community project hours across Madhesh and Lumbini.',
+        targetId: 'chap-1',
+        route: '/admin/chapters',
+        priority: 'normal' as const,
+        createdAt: '2026-10-12T11:00:00Z',
+        allowedActions: ['chapter:edit', 'chapter:pause'],
+      },
+    ];
+
+    return res.json({
+      capabilities: auth.capabilities,
+      allowedActions: auth.allowedActions,
+      summary: {
+        totalChapters: chapters.length,
+        activeChapters: activeChaps.length,
+        provincesCovered: provinces.size,
+        totalProjects: communityProjects.length,
+        activeProjects: communityProjects.filter(p => p.status !== 'Completed').length,
+        totalIssues: issues.length,
+        openIssues: openIss.length,
+        resolvedIssues: resIss.length,
+        moderationPending: pendingMods.length,
+        totalMembers: users.length,
+      },
+      chapters: chapters.map(c => ({
+        ...c,
+        status: c.status || 'active',
+      })),
+      projects: communityProjects,
+      issues: issues,
+      moderationQueue,
+      pendingActions: adminPendingActions,
+      recentActivity: auditRecords.slice(0, 8),
+    });
+  });
+
+  // GET /api/admin/chapters
+  app.get('/api/admin/chapters', (req: Request, res: Response) => {
+    const auth = evaluateAdminAuth(req);
+    if (!auth.authorized) {
+      return res.status(403).json({ error: 'Unauthorized' });
+    }
+
+    const enhancedChapters = chapters.map(c => {
+      const memberCount = users.filter(u => u.chapterId === c.id).length;
+      return {
+        ...c,
+        status: c.status || 'active',
+        totalMembersCount: memberCount > 0 ? memberCount : 12,
+        allowedActions: ['edit', 'pause', 'activate', 'archive'],
+      };
+    });
+
+    const provinces = Array.from(new Set(chapters.map(c => c.province)));
+
+    return res.json({
+      chapters: enhancedChapters,
+      capabilities: auth.capabilities,
+      allowedActions: auth.allowedActions,
+      provinces,
+    });
+  });
+
+  // POST /api/admin/chapters
+  app.post('/api/admin/chapters', (req: Request, res: Response) => {
+    const auth = evaluateAdminAuth(req);
+    if (!auth.authorized || !auth.capabilities.canCreateChapter) {
+      return res.status(403).json({ error: 'Unauthorized to create chapter' });
+    }
+
+    const {
+      name,
+      location,
+      province,
+      district,
+      localLevel,
+      shortDescription,
+      about,
+      coordinatorName,
+      coordinatorContact,
+      meetingSchedule,
+      meetingPlace,
+    } = req.body;
+
+    if (!name || !location || !province || !district) {
+      return res.status(400).json({ error: 'Name, location, province, and district are required.' });
+    }
+
+    const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    const newChapter = {
+      id: `chap-${Date.now()}`,
+      slug,
+      name,
+      location,
+      province,
+      district,
+      localLevel: localLevel || '',
+      shortDescription: shortDescription || 'Newly chartered Nawa Yuwa Club youth community chapter.',
+      about: about || 'Spearheading local civic youth initiatives and transparent community development.',
+      recentActivity: 'Chapter charter approved by Central Platform Administration.',
+      projectsCompleted: 0,
+      issuesResolved: 0,
+      lastActive: 'Chartered today',
+      meetingSchedule: meetingSchedule || 'Every Saturday at 8:00 AM',
+      meetingPlace: meetingPlace || `${location} Community Center`,
+      coordinatorName: coordinatorName || 'Assigned Chapter Coordinator',
+      coordinatorContact: coordinatorContact || '+977-9800000000',
+      establishedYear: new Date().getFullYear(),
+      status: 'active',
+    };
+
+    chapters.unshift(newChapter);
+
+    appendAuditLog(
+      { name: auth.userName || 'Admin', role: 'admin', identifier: 'NYC-CENTRAL' },
+      'CHAPTER_CREATED',
+      `Chapter: ${name} (${province})`,
+      'SUCCESS',
+      `Chartered new chapter in ${district}, ${province}.`
+    );
+
+    return res.status(201).json({
+      message: `Chapter "${name}" established successfully.`,
+      chapter: newChapter,
+    });
+  });
+
+  // PATCH /api/admin/chapters/:id
+  app.patch('/api/admin/chapters/:id', (req: Request, res: Response) => {
+    const auth = evaluateAdminAuth(req);
+    if (!auth.authorized || !auth.capabilities.canUpdateChapter) {
+      return res.status(403).json({ error: 'Unauthorized to update chapter' });
+    }
+
+    const { id } = req.params;
+    const chap = chapters.find(c => c.id === id || c.slug === id);
+    if (!chap) {
+      return res.status(404).json({ error: 'Chapter not found' });
+    }
+
+    const {
+      name,
+      coordinatorName,
+      coordinatorContact,
+      location,
+      meetingSchedule,
+      meetingPlace,
+      shortDescription,
+      about,
+      status,
+    } = req.body;
+
+    if (name) chap.name = name;
+    if (coordinatorName) chap.coordinatorName = coordinatorName;
+    if (coordinatorContact) chap.coordinatorContact = coordinatorContact;
+    if (location) chap.location = location;
+    if (meetingSchedule) chap.meetingSchedule = meetingSchedule;
+    if (meetingPlace) chap.meetingPlace = meetingPlace;
+    if (shortDescription) chap.shortDescription = shortDescription;
+    if (about) chap.about = about;
+    if (status) chap.status = status;
+
+    appendAuditLog(
+      { name: auth.userName || 'Admin', role: 'admin', identifier: 'NYC-CENTRAL' },
+      'CHAPTER_UPDATED',
+      `Chapter: ${chap.name}`,
+      'SUCCESS',
+      `Updated executive records for ${chap.name}.`
+    );
+
+    return res.json({
+      message: 'Chapter details updated successfully',
+      chapter: chap,
+    });
+  });
+
+  // POST /api/admin/chapters/:id/action
+  app.post('/api/admin/chapters/:id/action', (req: Request, res: Response) => {
+    const auth = evaluateAdminAuth(req);
+    if (!auth.authorized) {
+      return res.status(403).json({ error: 'Unauthorized' });
+    }
+
+    const { id } = req.params;
+    const { action } = req.body;
+    const chap = chapters.find(c => c.id === id || c.slug === id);
+    if (!chap) {
+      return res.status(404).json({ error: 'Chapter not found' });
+    }
+
+    if (action === 'pause') {
+      chap.status = 'paused';
+      appendAuditLog(
+        { name: auth.userName || 'Admin', role: 'admin', identifier: 'NYC-CENTRAL' },
+        'CHAPTER_PAUSED',
+        `Chapter: ${chap.name}`,
+        'SUCCESS',
+        `Temporarily paused chapter operations for administrative review.`
+      );
+      return res.json({ message: `Chapter ${chap.name} has been paused.`, chapter: chap });
+    }
+
+    if (action === 'activate') {
+      chap.status = 'active';
+      appendAuditLog(
+        { name: auth.userName || 'Admin', role: 'admin', identifier: 'NYC-CENTRAL' },
+        'CHAPTER_ACTIVATED',
+        `Chapter: ${chap.name}`,
+        'SUCCESS',
+        `Re-activated full chapter charter.`
+      );
+      return res.json({ message: `Chapter ${chap.name} is now active.`, chapter: chap });
+    }
+
+    if (action === 'archive') {
+      chap.status = 'archived';
+      appendAuditLog(
+        { name: auth.userName || 'Admin', role: 'admin', identifier: 'NYC-CENTRAL' },
+        'CHAPTER_ARCHIVED',
+        `Chapter: ${chap.name}`,
+        'SUCCESS',
+        `Archived chapter records.`
+      );
+      return res.json({ message: `Chapter ${chap.name} archived.`, chapter: chap });
+    }
+
+    return res.status(400).json({ error: 'Unknown chapter action' });
+  });
+
+  // GET /api/admin/promotions
+  app.get('/api/admin/promotions', (req: Request, res: Response) => {
+    const auth = evaluateAdminAuth(req);
+    if (!auth.authorized) {
+      return res.status(403).json({ error: 'Unauthorized to review executive promotions' });
+    }
+
+    const candidatesWithChapter = promotionCandidates.map(c => {
+      const chap = chapters.find(ch => ch.id === c.chapterId);
+      return {
+        ...c,
+        chapterName: chap ? chap.name : 'Bardaghat Chapter',
+        allowedActions: ['approve', 'reject', 'revoke'],
+      };
+    });
+
+    return res.json({
+      candidates: candidatesWithChapter,
+      capabilities: auth.capabilities,
+      allowedActions: auth.allowedActions,
+      rankHierarchy: [
+        'General Member',
+        'Active Volunteer',
+        'Squad Lead',
+        'Wing Coordinator',
+        'Deputy Chapter Lead',
+        'Chapter Coordinator',
+      ],
+    });
+  });
+
+  // POST /api/admin/promotions/:id/action
+  app.post('/api/admin/promotions/:id/action', (req: Request, res: Response) => {
+    const auth = evaluateAdminAuth(req);
+    if (!auth.authorized || !auth.capabilities.canApprovePromotions) {
+      return res.status(403).json({ error: 'Unauthorized to decide promotions' });
+    }
+
+    const { id } = req.params;
+    const { action } = req.body;
+
+    const candidate = promotionCandidates.find(p => p.id === id);
+    if (!candidate) {
+      return res.status(404).json({ error: 'Promotion candidate not found' });
+    }
+
+    if (action === 'approve') {
+      candidate.status = 'approved';
+      const user = users.find(u => u.id === candidate.memberId);
+      if (user) {
+        user.rank = candidate.proposedRank;
+      }
+      appendAuditLog(
+        { name: auth.userName || 'Central Admin', role: 'admin', identifier: 'NYC-PRESIDENT' },
+        'EXECUTIVE_PROMOTION_APPROVED',
+        `User: ${candidate.memberName} -> ${candidate.proposedRank}`,
+        'SUCCESS',
+        `Central presidential approval granted for rank advancement to "${candidate.proposedRank}".`
+      );
+      return res.json({
+        message: `Executive approval granted: ${candidate.memberName} is promoted to ${candidate.proposedRank}.`,
+        candidate,
+      });
+    }
+
+    if (action === 'reject') {
+      candidate.status = 'rejected';
+      appendAuditLog(
+        { name: auth.userName || 'Central Admin', role: 'admin', identifier: 'NYC-PRESIDENT' },
+        'EXECUTIVE_PROMOTION_DECLINED',
+        `User: ${candidate.memberName}`,
+        'SUCCESS',
+        `Promotion nomination declined by Central Administration.`
+      );
+      return res.json({ message: `Promotion nomination declined for ${candidate.memberName}.`, candidate });
+    }
+
+    if (action === 'revoke') {
+      candidate.status = 'rejected';
+      const user = users.find(u => u.id === candidate.memberId);
+      if (user) {
+        user.rank = 'Active Volunteer';
+      }
+      appendAuditLog(
+        { name: auth.userName || 'Central Admin', role: 'admin', identifier: 'NYC-PRESIDENT' },
+        'RANK_REVOKED',
+        `User: ${candidate.memberName}`,
+        'SUCCESS',
+        `Rank revoked back to Active Volunteer.`
+      );
+      return res.json({ message: `Revoked rank for ${candidate.memberName}.`, candidate });
+    }
+
+    return res.status(400).json({ error: 'Invalid promotion action' });
+  });
+
+  // GET /api/admin/moderation
+  app.get('/api/admin/moderation', (req: Request, res: Response) => {
+    const auth = evaluateAdminAuth(req);
+    if (!auth.authorized) {
+      return res.status(403).json({ error: 'Unauthorized to view moderation queue' });
+    }
+
+    const pending = moderationQueue.filter(m => m.status === 'pending').length;
+    const quarantined = moderationQueue.filter(m => m.status === 'quarantined').length;
+    const dismissed = moderationQueue.filter(m => m.status === 'dismissed').length;
+
+    return res.json({
+      queue: moderationQueue,
+      capabilities: auth.capabilities,
+      allowedActions: auth.allowedActions,
+      counts: {
+        pending,
+        quarantined,
+        dismissed,
+        total: moderationQueue.length,
+      },
+    });
+  });
+
+  // POST /api/admin/moderation/:id/action
+  app.post('/api/admin/moderation/:id/action', (req: Request, res: Response) => {
+    const auth = evaluateAdminAuth(req);
+    if (!auth.authorized || !auth.capabilities.canManageModeration) {
+      return res.status(403).json({ error: 'Unauthorized to moderate content' });
+    }
+
+    const { id } = req.params;
+    const { action, notes } = req.body;
+
+    const modItem = moderationQueue.find(m => m.id === id);
+    if (!modItem) {
+      return res.status(404).json({ error: 'Moderation item not found' });
+    }
+
+    if (action === 'dismiss_flag' || action === 'approve_content') {
+      modItem.status = 'dismissed';
+      appendAuditLog(
+        { name: auth.userName || 'Moderator', role: 'admin', identifier: 'NYC-MOD-01' },
+        'MODERATION_FLAG_DISMISSED',
+        `${modItem.itemType}: ${modItem.targetTitle}`,
+        'SUCCESS',
+        `Flag dismissed as false positive. Content approved.`
+      );
+      return res.json({ message: 'Content approved and flag dismissed.', item: modItem });
+    }
+
+    if (action === 'quarantine_content') {
+      modItem.status = 'quarantined';
+      appendAuditLog(
+        { name: auth.userName || 'Moderator', role: 'admin', identifier: 'NYC-MOD-01' },
+        'CONTENT_QUARANTINED',
+        `${modItem.itemType}: ${modItem.targetTitle}`,
+        'SUCCESS',
+        notes || 'Content quarantined pending verification.'
+      );
+      return res.json({ message: 'Content quarantined from public feeds.', item: modItem });
+    }
+
+    if (action === 'delete_content') {
+      modItem.status = 'deleted';
+      // If target was an issue, remove from issues array
+      if (modItem.itemType === 'issue') {
+        const issIdx = issues.findIndex(i => i.id === modItem.targetId);
+        if (issIdx !== -1) issues.splice(issIdx, 1);
+      }
+      appendAuditLog(
+        { name: auth.userName || 'Moderator', role: 'admin', identifier: 'NYC-MOD-01' },
+        'CONTENT_PURGED',
+        `${modItem.itemType}: ${modItem.targetTitle}`,
+        'SUCCESS',
+        notes || 'Permanently removed spam / violating content.'
+      );
+      return res.json({ message: 'Content permanently removed.', item: modItem });
+    }
+
+    if (action === 'warn_user') {
+      appendAuditLog(
+        { name: auth.userName || 'Moderator', role: 'admin', identifier: 'NYC-MOD-01' },
+        'USER_WARNED',
+        `Reporter/Author: ${modItem.reportedBy}`,
+        'SUCCESS',
+        'Official warning notice issued regarding community guidelines.'
+      );
+      return res.json({ message: `Warning issued to author of ${modItem.targetTitle}.`, item: modItem });
+    }
+
+    if (action === 'suspend_user') {
+      appendAuditLog(
+        { name: auth.userName || 'Moderator', role: 'admin', identifier: 'NYC-MOD-01' },
+        'USER_SUSPENDED',
+        `Target Author: ${modItem.targetTitle}`,
+        'SUCCESS',
+        'Account suspended due to policy violation.'
+      );
+      return res.json({ message: 'User suspended from reporting.', item: modItem });
+    }
+
+    return res.status(400).json({ error: 'Invalid moderation action' });
+  });
+
+  // GET /api/admin/config
+  app.get('/api/admin/config', (req: Request, res: Response) => {
+    const auth = evaluateAdminAuth(req);
+    if (!auth.authorized) {
+      return res.status(403).json({ error: 'Unauthorized to view platform config' });
+    }
+
+    return res.json({
+      config: platformConfig,
+      capabilities: auth.capabilities,
+      allowedActions: ['config:update'],
+    });
+  });
+
+  // PATCH /api/admin/config
+  app.patch('/api/admin/config', (req: Request, res: Response) => {
+    const auth = evaluateAdminAuth(req);
+    if (!auth.authorized || !auth.capabilities.canManageConfig) {
+      return res.status(403).json({ error: 'Unauthorized to modify platform configuration' });
+    }
+
+    const updates = req.body;
+    if (updates.organizationName) platformConfig.organizationName = String(updates.organizationName).trim();
+    if (updates.helplinePhone) platformConfig.helplinePhone = String(updates.helplinePhone).trim();
+    if (updates.supportEmail) platformConfig.supportEmail = String(updates.supportEmail).trim();
+    if (updates.currentFiscalYear) platformConfig.currentFiscalYear = String(updates.currentFiscalYear).trim();
+    if (typeof updates.autoVerifyTrustedReporters === 'boolean') {
+      platformConfig.autoVerifyTrustedReporters = updates.autoVerifyTrustedReporters;
+    }
+    if (typeof updates.requirePhoneOtpForReporting === 'boolean') {
+      platformConfig.requirePhoneOtpForReporting = updates.requirePhoneOtpForReporting;
+    }
+    if (typeof updates.publicFinancialTransparency === 'boolean') {
+      platformConfig.publicFinancialTransparency = updates.publicFinancialTransparency;
+    }
+    if (typeof updates.allowDirectMemberApplications === 'boolean') {
+      platformConfig.allowDirectMemberApplications = updates.allowDirectMemberApplications;
+    }
+    if (Number(updates.minVolunteerHoursForSquadLead) > 0) {
+      platformConfig.minVolunteerHoursForSquadLead = Number(updates.minVolunteerHoursForSquadLead);
+    }
+    if (Number(updates.minVolunteerHoursForCoordinator) > 0) {
+      platformConfig.minVolunteerHoursForCoordinator = Number(updates.minVolunteerHoursForCoordinator);
+    }
+    if (Array.isArray(updates.flaggingKeywords)) {
+      platformConfig.flaggingKeywords = updates.flaggingKeywords.map((k: string) => String(k).trim()).filter(Boolean);
+    }
+
+    appendAuditLog(
+      { name: auth.userName || 'Central Admin', role: 'admin', identifier: 'NYC-PRESIDENT' },
+      'PLATFORM_SETTINGS_MUTATION',
+      'Configuration: Global Core Settings',
+      'SUCCESS',
+      'Updated platform rules, thresholds, and operational flags.'
+    );
+
+    return res.json({
+      message: 'Platform configuration updated successfully.',
+      config: platformConfig,
+    });
+  });
+
+  // GET /api/admin/audit
+  app.get('/api/admin/audit', (req: Request, res: Response) => {
+    const auth = evaluateAdminAuth(req);
+    if (!auth.authorized || !auth.capabilities.canViewAudit) {
+      return res.status(403).json({ error: 'Unauthorized to view audit registry' });
+    }
+
+    const { action, result, search } = req.query;
+
+    let filtered = [...auditRecords];
+
+    if (action && action !== 'all') {
+      filtered = filtered.filter(a => a.action === action);
+    }
+    if (result && result !== 'all') {
+      filtered = filtered.filter(a => a.result === result);
+    }
+    if (search && typeof search === 'string') {
+      const q = search.toLowerCase();
+      filtered = filtered.filter(a =>
+        a.actor.name.toLowerCase().includes(q) ||
+        a.resource.toLowerCase().includes(q) ||
+        a.action.toLowerCase().includes(q) ||
+        a.details.toLowerCase().includes(q)
+      );
+    }
+
+    const actionTypes = Array.from(new Set(auditRecords.map(a => a.action)));
+
+    return res.json({
+      records: filtered,
+      capabilities: auth.capabilities,
+      allowedActions: ['audit:view', 'audit:export'],
+      actionTypes,
+    });
+  });
+
   // VITE DEV SERVER OR STATIC PRODUCTION BUILD
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.resolve(__dirname, 'dist')));
@@ -1515,15 +3477,19 @@ async function startServer() {
     });
   } else {
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: {
+        middlewareMode: true,
+        hmr: false,
+      },
       appType: 'spa',
     });
     app.use(vite.middlewares);
   }
 
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => {
-    console.log(`Nawa Yuwa Club server listening on port ${PORT}`);
+  const PORT = Number(process.env.PORT) || 3000;
+  const HOST = process.env.HOST || '0.0.0.0';
+  app.listen(PORT, HOST, () => {
+    console.log(`Nawa Yuwa Club server listening on http://${HOST}:${PORT}`);
   });
 }
 

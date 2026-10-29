@@ -2,16 +2,40 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      // Suppress Vite HMR WebSocket connection errors in Cloud Run / preview container
+      (function() {
+        var isWsError = function(val) {
+          if (!val) return false;
+          var str = typeof val === 'string' ? val : (val.message || val.stack || String(val));
+          return str.indexOf('WebSocket') !== -1 || str.indexOf('[vite] failed to connect') !== -1 || str.indexOf('closed without opened') !== -1;
+        };
+        window.addEventListener('unhandledrejection', function(e) {
+          if (e && isWsError(e.reason)) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+          }
+        });
+        window.addEventListener('error', function(e) {
+          if (e && (isWsError(e.message) || isWsError(e.error))) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+          }
+        });
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nawa Yuwa Club | Youth, Community & Local Action in Nepal</title>
-    <meta name="description" content="Nawa Yuwa Club connects young people in Nepal with community activities, local chapters, volunteering, leadership opportunities, community issues, projects, and measurable local impact." />
-    <meta name="author" content="Nawa Yuwa Club" />
+    <title>Nawa Yuwa Foundation | Youth, Community & Local Action in Nepal</title>
+    <meta name="description" content="Nawa Yuwa Foundation connects young people in Nepal with community activities, local chapters, volunteering, leadership opportunities, community issues, projects, and measurable local impact." />
+    <meta name="author" content="Nawa Yuwa Foundation" />
+    <link rel="icon" type="image/png" href="/assets/aistudio/image_26f9ac04.png" />
+    <link rel="apple-touch-icon" href="/assets/aistudio/image_26f9ac04.png" />
     <link rel="canonical" href="https://nawayuwa.org.np" />
     
     <!-- OpenGraph Social Cards -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Nawa Yuwa Club" />
-    <meta property="og:title" content="Nawa Yuwa Club | Youth, Community & Local Action in Nepal" />
+    <meta property="og:site_name" content="Nawa Yuwa Foundation" />
+    <meta property="og:title" content="Nawa Yuwa Foundation | Youth, Community & Local Action in Nepal" />
     <meta property="og:description" content="Your Community. Your Voice. Your Action. Join young people across Nepal working together to build stronger, more active, and connected communities." />
     <meta property="og:url" content="https://nawayuwa.org.np" />
     <meta property="og:image" content="/src/assets/images/nepal_youth_community_action_1791953691940.jpg" />

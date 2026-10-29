@@ -2,6 +2,13 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { User, UserRole } from '../types/index.ts';
 import { api, getStoredToken, getStoredUser, clearAuthData } from '../services/api.ts';
 import { sendMobileOtp, verifyMobileOtp, sendEmailOtp, verifyEmailOtp } from '../lib/supabase.ts';
+import {
+  auth,
+  googleProvider,
+  signInWithPopup,
+  firebaseSignOut,
+  syncUserProfileToDatabase,
+} from '../lib/firebase.ts';
 import type { OnboardingInput } from '../lib/validation/auth.ts';
 
 interface VerifyAuthResult {
@@ -20,6 +27,7 @@ interface AuthContextType {
   verifyPhoneOtp: (phone: string, otp: string) => Promise<VerifyAuthResult>;
   sendEmailOtp: (email: string) => Promise<{ message: string; demoOtp?: string; expiresInSeconds?: number }>;
   verifyEmailOtp: (email: string, otp: string) => Promise<VerifyAuthResult>;
+  signInWithGoogle: () => Promise<VerifyAuthResult>;
   completeOnboarding: (data: OnboardingInput) => Promise<User>;
   login: (email: string, password: string) => Promise<void>;
   register: (data: { name: string; email: string; phone: string; password: string; role?: UserRole; clubWing?: string }) => Promise<void>;
@@ -98,6 +106,26 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setUser(currentUser);
       setSessionExpired(false);
 
+      // Persist authenticated profile to Firestore database
+      try {
+        await syncUserProfileToDatabase({
+          id: currentUser.id,
+          name: currentUser.name,
+          email: currentUser.email,
+          phone: currentUser.phone,
+          role: currentUser.role,
+          province: currentUser.province,
+          district: currentUser.district,
+          localLevel: currentUser.localLevel,
+          ward: currentUser.ward,
+          preferredLanguage: currentUser.preferredLanguage,
+          onboardingCompleted: currentUser.onboardingCompleted,
+          avatar: currentUser.avatar,
+        });
+      } catch (dbErr) {
+        console.warn('Firestore database sync warning:', dbErr);
+      }
+
       const isOnboarded = Boolean(currentUser.onboardingCompleted);
       const redirect = isOnboarded ? '/dashboard' : '/onboarding';
 
@@ -147,11 +175,119 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setUser(currentUser);
       setSessionExpired(false);
 
+      // Persist authenticated email profile to Firestore database
+      try {
+        await syncUserProfileToDatabase({
+          id: currentUser.id,
+          name: currentUser.name,
+          email: currentUser.email,
+          phone: currentUser.phone,
+          role: currentUser.role,
+          province: currentUser.province,
+          district: currentUser.district,
+          localLevel: currentUser.localLevel,
+          ward: currentUser.ward,
+          preferredLanguage: currentUser.preferredLanguage,
+          onboardingCompleted: currentUser.onboardingCompleted,
+          avatar: currentUser.avatar,
+        });
+      } catch (dbErr) {
+        console.warn('Firestore database sync warning:', dbErr);
+      }
+
       const isOnboarded = Boolean(currentUser.onboardingCompleted);
       const redirect = isOnboarded ? '/dashboard' : '/onboarding';
 
       return {
         user: currentUser,
+        onboardingCompleted: isOnboarded,
+        redirect,
+      };
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  /**
+   * Sign In with Google via Firebase Auth and sync to Firestore
+   */
+  const handleSignInWithGoogle = async (): Promise<VerifyAuthResult> => {
+    setIsLoading(true);
+    try {
+      const cred = await signInWithPopup(auth, googleProvider);
+      const gUser = cred.user;
+      const email = gUser.email || '';
+      const name = gUser.displayName || email.split('@')[0] || 'Nawa Yuwa Member';
+      const phone = gUser.phoneNumber || '';
+      const avatar = gUser.photoURL || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80';
+
+      let appUser: User;
+      let userToken = '';
+      try {
+        const loginRes = await api.login(email, 'google-oauth-pass').catch(() => null);
+        if (loginRes) {
+          appUser = loginRes.user;
+          userToken = loginRes.token;
+        } else {
+          const regRes = await api.register({
+            name,
+            email,
+            phone,
+            password: 'google-oauth-pass',
+            role: 'member',
+            clubWing: 'Youth & Civic Action Wing',
+          });
+          appUser = regRes.user;
+          userToken = regRes.token;
+        }
+      } catch {
+        appUser = {
+          id: gUser.uid,
+          name,
+          email,
+          phone,
+          role: 'member',
+          clubWing: 'Youth & Civic Action Wing',
+          membershipId: `NYC-2026-${gUser.uid.slice(0, 4).toUpperCase()}`,
+          joinedDate: new Date().toISOString().split('T')[0],
+          status: 'active',
+          avatar,
+          bio: 'Nawa Yuwa Foundation Member',
+          volunteerHours: 0,
+          onboardingCompleted: false,
+        };
+        userToken = await gUser.getIdToken();
+      }
+
+      // Persist to Firestore database
+      try {
+        await syncUserProfileToDatabase({
+          id: appUser.id,
+          name: appUser.name,
+          email: appUser.email,
+          phone: appUser.phone,
+          role: appUser.role,
+          province: appUser.province,
+          district: appUser.district,
+          localLevel: appUser.localLevel,
+          ward: appUser.ward,
+          preferredLanguage: appUser.preferredLanguage,
+          onboardingCompleted: appUser.onboardingCompleted,
+          avatar: appUser.avatar,
+        });
+      } catch (dbErr) {
+        console.warn('Firestore database sync warning:', dbErr);
+      }
+
+      setUser(appUser);
+      setToken(userToken);
+      setSessionExpired(false);
+
+      const isOnboarded = Boolean(appUser.onboardingCompleted);
+      const redirect = isOnboarded ? '/dashboard' : '/onboarding';
+
+      return {
+        user: appUser,
         onboardingCompleted: isOnboarded,
         redirect,
       };
@@ -168,6 +304,27 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       const res = await api.completeOnboarding(data);
       setUser(res.user);
+
+      // Persist complete onboarding profile to Firestore database
+      try {
+        await syncUserProfileToDatabase({
+          id: res.user.id,
+          name: res.user.name,
+          email: res.user.email,
+          phone: res.user.phone,
+          role: res.user.role,
+          province: res.user.province,
+          district: res.user.district,
+          localLevel: res.user.localLevel,
+          ward: res.user.ward,
+          preferredLanguage: res.user.preferredLanguage,
+          onboardingCompleted: true,
+          avatar: res.user.avatar,
+        });
+      } catch (dbErr) {
+        console.warn('Firestore database sync warning:', dbErr);
+      }
+
       return res.user;
     } finally {
       setIsLoading(false);
@@ -213,7 +370,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const logout = async () => {
     setIsLoading(true);
     try {
-      await api.logout();
+      await api.logout().catch(() => {});
+      await firebaseSignOut(auth).catch(() => {});
     } finally {
       setUser(null);
       setToken(null);
@@ -238,6 +396,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         verifyPhoneOtp: handleVerifyPhoneOtp,
         sendEmailOtp: handleSendEmailOtp,
         verifyEmailOtp: handleVerifyEmailOtp,
+        signInWithGoogle: handleSignInWithGoogle,
         completeOnboarding: handleCompleteOnboarding,
         login,
         register,

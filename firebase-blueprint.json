@@ -1,0 +1,102 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with role, contact info, and local administrative area",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 150 },
+        "phone": { "type": "string", "maxLength": 20 },
+        "role": { "type": "string", "enum": ["admin", "chapter_leader", "treasurer", "player", "member"] },
+        "chapterId": { "type": "string", "maxLength": 128 },
+        "province": { "type": "string", "maxLength": 100 },
+        "district": { "type": "string", "maxLength": 100 },
+        "localLevel": { "type": "string", "maxLength": 100 },
+        "ward": { "type": "string", "maxLength": 10 },
+        "preferredLanguage": { "type": "string", "enum": ["ne", "en"] },
+        "onboardingCompleted": { "type": "boolean" },
+        "volunteerHours": { "type": "number" },
+        "avatar": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string", "maxLength": 50 },
+        "updatedAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["id", "name", "role", "onboardingCompleted"]
+    },
+    "Chapter": {
+      "title": "Chapter",
+      "description": "Local civic chapter of Nawa Yuwa Foundation",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "slug": { "type": "string", "maxLength": 100 },
+        "name": { "type": "string", "maxLength": 150 },
+        "location": { "type": "string", "maxLength": 200 },
+        "province": { "type": "string", "maxLength": 100 },
+        "district": { "type": "string", "maxLength": 100 },
+        "localLevel": { "type": "string", "maxLength": 100 },
+        "shortDescription": { "type": "string", "maxLength": 500 },
+        "about": { "type": "string", "maxLength": 2000 },
+        "coordinatorName": { "type": "string", "maxLength": 100 },
+        "coordinatorContact": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["id", "slug", "name", "province", "district"]
+    },
+    "Issue": {
+      "title": "Issue",
+      "description": "Community civic issue reported by citizens or members",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "chapterId": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 200 },
+        "description": { "type": "string", "maxLength": 2000 },
+        "category": { "type": "string", "maxLength": 50 },
+        "location": { "type": "string", "maxLength": 200 },
+        "ward": { "type": "string", "maxLength": 10 },
+        "status": { "type": "string", "enum": ["reported", "investigating", "in_progress", "resolved", "dismissed"] },
+        "reportedBy": { "type": "string", "maxLength": 128 },
+        "upvotes": { "type": "number" },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["id", "title", "description", "category", "status", "reportedBy"]
+    },
+    "Project": {
+      "title": "Project",
+      "description": "Youth-led community action project or volunteer initiative",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "chapterId": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 200 },
+        "description": { "type": "string", "maxLength": 3000 },
+        "category": { "type": "string", "maxLength": 50 },
+        "location": { "type": "string", "maxLength": 200 },
+        "date": { "type": "string", "maxLength": 50 },
+        "status": { "type": "string", "enum": ["planning", "active", "completed", "cancelled"] },
+        "organizer": { "type": "string", "maxLength": 100 },
+        "registeredVolunteers": { "type": "number" }
+      },
+      "required": ["id", "name", "category", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "User" },
+      "description": "User profiles indexed by UID"
+    },
+    "/chapters/{chapterId}": {
+      "schema": { "$ref": "Chapter" },
+      "description": "Local youth chapters across Nepal"
+    },
+    "/issues/{issueId}": {
+      "schema": { "$ref": "Issue" },
+      "description": "Reported community civic issues"
+    },
+    "/projects/{projectId}": {
+      "schema": { "$ref": "Project" },
+      "description": "Community projects and civic campaigns"
+    }
+  }
+}

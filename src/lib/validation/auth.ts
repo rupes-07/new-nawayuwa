@@ -81,9 +81,7 @@ export const onboardingSchema = z.object({
     .trim()
     .min(1, 'Ward number is required')
     .regex(/^(?:[1-9]|[12][0-9]|3[0-5])$/, 'Ward number must be between 1 and 35'),
-  preferredLanguage: z.enum(['ne', 'en'], {
-    errorMap: () => ({ message: 'Please select your preferred language (Nepali or English)' }),
-  }),
+  preferredLanguage: z.enum(['ne', 'en'] as const),
 });
 
 export type OnboardingInput = z.infer<typeof onboardingSchema>;

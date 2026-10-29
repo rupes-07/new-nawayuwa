@@ -1,4 +1,4 @@
-export type UserRole = 'admin' | 'player' | 'treasurer' | 'member';
+export type UserRole = 'admin' | 'chapter_leader' | 'player' | 'treasurer' | 'member';
 
 export interface User {
   id: string;
@@ -22,6 +22,10 @@ export interface User {
   localLevel?: string;
   ward?: string;
   preferredLanguage?: 'ne' | 'en';
+  chapterId?: string;
+  assignedWing?: string;
+  attendanceRate?: number;
+  rank?: string;
 }
 
 export interface MatchFixture {
@@ -176,5 +180,335 @@ export interface CommunityProject {
   status: 'Upcoming' | 'In Progress' | 'Completed';
   participantsCount: number;
   isParticipating?: boolean;
+  participationInfo?: {
+    targetVolunteers?: number;
+    requiredSkills?: string;
+    volunteerHoursCredit?: number;
+    prerequisites?: string;
+    coordinatorNotes?: string;
+  };
+  images?: string[];
+}
+
+// ==========================================================================
+// PHASE 11: CHAPTER LEADER DOMAIN TYPES & AUTHORIZATION CONTRACTS
+// ==========================================================================
+
+export interface LeaderCapabilities {
+  canViewMembers: boolean;
+  canPromoteMembers: boolean;
+  canAssignRoles: boolean;
+  canSuspendMembers: boolean;
+  canRemoveMembers: boolean;
+  canManageIssues: boolean;
+  canUpdateIssueStatus: boolean;
+  canAddIssueNotes: boolean;
+  canCreateProjects: boolean;
+  canMarkAttendance: boolean;
+  canExportAttendance: boolean;
+  canManagePromotions: boolean;
+}
+
+export interface LeaderContext {
+  authorized: boolean;
+  userRole?: UserRole;
+  userName?: string;
+  chapter: Chapter;
+  capabilities: LeaderCapabilities;
+  allowedActions: string[];
+  reason?: string;
+}
+
+export interface LeaderPendingAction {
+  id: string;
+  type: 'issue_review' | 'promotion_approval' | 'attendance_due' | 'project_kickoff';
+  title: string;
+  description: string;
+  targetId: string;
+  route: string;
+  priority: 'urgent' | 'high' | 'normal';
+  createdAt: string;
+  allowedActions: string[];
+}
+
+export interface LeaderActivityLog {
+  id: string;
+  action: string;
+  performedBy: string;
+  details: string;
+  timestamp: string;
+  type: 'member' | 'issue' | 'project' | 'attendance' | 'promotion';
+}
+
+export interface LeaderDashboardData {
+  chapter: Chapter;
+  capabilities: LeaderCapabilities;
+  allowedActions: string[];
+  chapterActivity: {
+    totalMembers: number;
+    activeProjects: number;
+    openIssues: number;
+    resolvedIssues: number;
+    volunteerHoursLogged: number;
+    averageAttendanceRate: number;
+  };
+  members: Array<{
+    id: string;
+    name: string;
+    membershipId: string;
+    role: string;
+    clubWing: string;
+    status: string;
+    volunteerHours: number;
+    avatar?: string;
+    rank?: string;
+    ward?: string;
+  }>;
+  projects: Array<CommunityProject & {
+    volunteersRegistered?: number;
+    targetVolunteers?: number;
+  }>;
+  issues: Array<CommunityIssue & {
+    priority?: 'High' | 'Normal' | 'Urgent';
+  }>;
+  pendingActions: LeaderPendingAction[];
+  recentActivity: LeaderActivityLog[];
+}
+
+export interface LeaderMemberItem {
+  id: string;
+  name: string;
+  email: string;
+  phone?: string;
+  membershipId: string;
+  role: string;
+  clubWing: string;
+  status: 'active' | 'pending' | 'suspended';
+  joinedDate: string;
+  volunteerHours: number;
+  avatar?: string;
+  ward?: string;
+  attendanceRate: number;
+  currentRank: string;
+  allowedActions: string[];
+}
+
+export interface LeaderMembersResponse {
+  chapter: Chapter;
+  members: LeaderMemberItem[];
+  allowedActions: string[];
+  capabilities: LeaderCapabilities;
+}
+
+export interface LeaderIssuesResponse {
+  chapter: Chapter;
+  issues: CommunityIssue[];
+  allowedActions: string[];
+  capabilities: LeaderCapabilities;
+  statusOptions: Array<'Reported' | 'Under Review' | 'Verified' | 'In Progress' | 'Resolved'>;
+}
+
+export interface AttendanceRecord {
+  memberId: string;
+  memberName: string;
+  membershipId: string;
+  avatar?: string;
+  clubWing?: string;
+  status: 'present' | 'absent' | 'late' | 'excused';
+  checkInTime?: string;
+  notes?: string;
+  hoursAwarded: number;
+}
+
+export interface AttendanceSession {
+  id: string;
+  title: string;
+  type: 'project' | 'event' | 'meeting';
+  date: string;
+  location: string;
+  targetHours: number;
+  totalExpected: number;
+  totalPresent: number;
+}
+
+export interface LeaderAttendanceData {
+  chapter: Chapter;
+  sessions: AttendanceSession[];
+  activeSessionId: string;
+  records: AttendanceRecord[];
+  allowedActions: string[];
+  capabilities: LeaderCapabilities;
+}
+
+export interface PromotionCandidate {
+  id: string;
+  memberId: string;
+  memberName: string;
+  membershipId: string;
+  avatar?: string;
+  currentRank: string;
+  proposedRank: string;
+  volunteerHours: number;
+  attendanceRate: number;
+  projectsCompleted: number;
+  nominatedBy: string;
+  nominatedDate: string;
+  status: 'pending' | 'approved' | 'rejected';
+  criteriaMet: string[];
+  allowedActions: string[];
+}
+
+export interface LeaderPromotionsResponse {
+  chapter: Chapter;
+  candidates: PromotionCandidate[];
+  allowedActions: string[];
+  capabilities: LeaderCapabilities;
+  rankHierarchy: string[];
+}
+
+// ==========================================================================
+// PHASE 12: PLATFORM ADMINISTRATION DOMAIN TYPES
+// ==========================================================================
+
+export interface AdminCapabilities {
+  canManageChapters: boolean;
+  canCreateChapter: boolean;
+  canUpdateChapter: boolean;
+  canPauseChapter: boolean;
+  canManagePromotions: boolean;
+  canApprovePromotions: boolean;
+  canRevokePromotions: boolean;
+  canManageModeration: boolean;
+  canQuarantineContent: boolean;
+  canDeleteContent: boolean;
+  canManageConfig: boolean;
+  canViewAudit: boolean;
+  canExportAudit: boolean;
+}
+
+export interface AdminContext {
+  authorized: boolean;
+  userRole?: UserRole;
+  userName?: string;
+  capabilities: AdminCapabilities;
+  allowedActions: string[];
+  reason?: string;
+}
+
+export interface ModerationItem {
+  id: string;
+  itemType: 'issue' | 'comment' | 'member_profile' | 'project_submission';
+  targetId: string;
+  targetTitle: string;
+  reportedReason: string;
+  reportedBy: string;
+  reportedDate: string;
+  status: 'pending' | 'reviewed' | 'quarantined' | 'dismissed' | 'deleted';
+  riskLevel: 'low' | 'medium' | 'high' | 'critical';
+  excerpt: string;
+  allowedActions: string[];
+}
+
+export interface AdminPendingAction {
+  id: string;
+  type: 'moderation' | 'chapter_approval' | 'promotion_final' | 'config_review';
+  title: string;
+  description: string;
+  targetId: string;
+  route: string;
+  priority: 'urgent' | 'high' | 'normal';
+  createdAt: string;
+  allowedActions: string[];
+}
+
+export interface AdminAuditRecord {
+  id: string;
+  actor: {
+    name: string;
+    role: string;
+    identifier: string; // sanitized non-sensitive identifier
+  };
+  action: string;
+  resource: string;
+  date: string;
+  result: 'SUCCESS' | 'DENIED' | 'FLAGGED';
+  details: string;
+}
+
+export interface PlatformConfig {
+  organizationName: string;
+  helplinePhone: string;
+  supportEmail: string;
+  currentFiscalYear: string;
+  autoVerifyTrustedReporters: boolean;
+  requirePhoneOtpForReporting: boolean;
+  publicFinancialTransparency: boolean;
+  allowDirectMemberApplications: boolean;
+  minVolunteerHoursForSquadLead: number;
+  minVolunteerHoursForCoordinator: number;
+  maxUploadFileSizeMb: number;
+  flaggingKeywords: string[];
+}
+
+export interface AdminDashboardData {
+  capabilities: AdminCapabilities;
+  allowedActions: string[];
+  summary: {
+    totalChapters: number;
+    activeChapters: number;
+    provincesCovered: number;
+    totalProjects: number;
+    activeProjects: number;
+    totalIssues: number;
+    openIssues: number;
+    resolvedIssues: number;
+    moderationPending: number;
+    totalMembers: number;
+  };
+  chapters: Chapter[];
+  projects: CommunityProject[];
+  issues: CommunityIssue[];
+  moderationQueue: ModerationItem[];
+  pendingActions: AdminPendingAction[];
+  recentActivity: AdminAuditRecord[];
+}
+
+export interface AdminChaptersResponse {
+  chapters: Array<Chapter & {
+    status?: 'active' | 'under_review' | 'paused' | 'archived';
+    totalMembersCount?: number;
+    allowedActions: string[];
+  }>;
+  capabilities: AdminCapabilities;
+  allowedActions: string[];
+  provinces: string[];
+}
+
+export interface AdminPromotionsResponse {
+  candidates: Array<PromotionCandidate & {
+    chapterName: string;
+  }>;
+  capabilities: AdminCapabilities;
+  allowedActions: string[];
+  rankHierarchy: string[];
+}
+
+export interface AdminModerationResponse {
+  queue: ModerationItem[];
+  capabilities: AdminCapabilities;
+  allowedActions: string[];
+  counts: {
+    pending: number;
+    quarantined: number;
+    dismissed: number;
+    total: number;
+  };
+}
+
+export interface AdminAuditResponse {
+  records: AdminAuditRecord[];
+  capabilities: AdminCapabilities;
+  allowedActions: string[];
+  actionTypes: string[];
 }
 

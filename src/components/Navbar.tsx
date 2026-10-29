@@ -108,24 +108,26 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Main Navigation */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-18">
-          {/* Logo & Identity */}
+          {/* Logo & Identity with official Nawa Yuwa Foundation brand asset */}
           <div
             onClick={() => setCurrentView('home')}
-            className="flex items-center space-x-3 cursor-pointer group"
+            className="flex items-center space-x-3 cursor-pointer group select-none"
           >
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-tr from-emerald-600 to-emerald-400 p-0.5 shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition">
-              <div className="w-full h-full bg-slate-900 rounded-[10px] flex items-center justify-center relative overflow-hidden">
-                <Shield className="w-6 h-6 text-emerald-400" />
-                <span className="absolute bottom-0 text-[8px] font-bold text-amber-400 tracking-tighter">EST 05</span>
-              </div>
+            <div className="w-11 h-11 rounded-xl bg-white p-0.5 shadow-lg border border-slate-700 group-hover:scale-105 transition flex items-center justify-center overflow-hidden">
+              <img
+                src="/assets/aistudio/image_26f9ac04.png"
+                alt="Nawa Yuwa Foundation"
+                className="w-full h-full object-contain"
+              />
             </div>
             <div>
               <div className="flex items-center space-x-2">
-                <span className="font-extrabold text-lg tracking-tight bg-gradient-to-r from-emerald-400 via-emerald-200 to-amber-300 bg-clip-text text-transparent">
-                  NAWA YUWA CLUB
+                <span className="font-extrabold text-lg tracking-tight text-white flex items-center gap-1">
+                  <span className="text-white">NAWA</span>
+                  <span className="text-[#FA5A00]">YUWA</span>
                 </span>
-                <span className="text-[11px] font-medium text-amber-400 bg-amber-400/10 px-1.5 py-0.5 rounded border border-amber-400/20 hidden sm:inline">
-                  नयाँ युवा क्लब
+                <span className="text-[10px] font-bold text-[#FA5A00] bg-[#FA5A00]/15 px-1.5 py-0.5 rounded border border-[#FA5A00]/30 hidden sm:inline uppercase tracking-wider">
+                  FOUNDATION
                 </span>
               </div>
               <p className="text-[11px] text-slate-400 -mt-0.5">Bardaghat-16, Nawalparasi • Est. 2005</p>

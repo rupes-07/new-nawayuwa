@@ -2,6 +2,7 @@ import React from 'react';
 import { useI18n } from '../../context/I18nContext.tsx';
 import { LanguageSwitcher } from './LanguageSwitcher.tsx';
 import { ThemeSwitcher } from './ThemeSwitcher.tsx';
+import { BrandLogo } from '../ui/BrandLogo.tsx';
 
 export interface PublicFooterProps {
   onNavigate?: (path: string) => void;
@@ -22,19 +23,7 @@ export const PublicFooter: React.FC<PublicFooterProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Column 1 & 2: Brand & Mission */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[var(--color-primary)] text-white flex items-center justify-center font-black text-base shadow-xs">
-                NY
-              </div>
-              <div>
-                <span className="font-extrabold text-base text-[var(--color-foreground)] block tracking-tight">
-                  {t('brandName')}
-                </span>
-                <span className="text-[11px] text-[var(--color-muted)] font-medium block">
-                  {t('brandTagline')}
-                </span>
-              </div>
-            </div>
+            <BrandLogo size="md" showText={true} showSubtitle={true} onClick={() => onNavigate?.('/')} />
 
             <p className="type-body text-[var(--color-muted)] max-w-sm leading-relaxed">
               {t('footerMission')}

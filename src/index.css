@@ -6,16 +6,16 @@
    ========================================================================== */
 
 :root {
-  /* Primary Accent: Nepal Crimson */
-  --color-primary: #C1121F;
-  --color-primary-hover: #9B111E;
-  --color-primary-muted: rgba(193, 18, 31, 0.08);
+  /* Primary Accent: Nawa Yuwa Vibrant Flame Orange (#FA5A00) */
+  --color-primary: #FA5A00;
+  --color-primary-hover: #E04800;
+  --color-primary-muted: rgba(250, 90, 0, 0.09);
   --color-primary-foreground: #FFFFFF;
 
-  /* Secondary Accent: Nepal Deep Blue */
-  --color-secondary: #003893;
-  --color-secondary-hover: #002663;
-  --color-secondary-muted: rgba(0, 56, 147, 0.08);
+  /* Secondary Accent: Nawa Yuwa Deep Sovereign Navy (#002D62) */
+  --color-secondary: #002D62;
+  --color-secondary-hover: #001F45;
+  --color-secondary-muted: rgba(0, 45, 98, 0.09);
   --color-secondary-foreground: #FFFFFF;
 
   /* Canvas & Surfaces (Light Mode) */
@@ -24,9 +24,9 @@
   --color-surface-muted: #F1F5F9;
   --color-surface-elevated: #FFFFFF;
 
-  /* Text & Border */
-  --color-foreground: #0F172A;
-  --color-foreground-muted: #334155;
+  /* Text & Border (Deep Navy Ink Typography) */
+  --color-foreground: #091C34;
+  --color-foreground-muted: #1E3A5F;
   --color-muted: #64748B;
   --color-border: #E2E8F0;
   --color-border-subtle: #F1F5F9;
@@ -57,10 +57,10 @@
   --radius-full: 9999px;
 
   /* Elevation Shadows */
-  --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
-  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
-  --shadow-focus: 0 0 0 3px rgba(193, 18, 31, 0.25);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 45, 98, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 45, 98, 0.08), 0 2px 4px -2px rgba(0, 45, 98, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 45, 98, 0.1), 0 4px 6px -4px rgba(0, 45, 98, 0.05);
+  --shadow-focus: 0 0 0 3px rgba(250, 90, 0, 0.28);
 
   /* Spacing Scale */
   --space-2xs: 0.25rem;
@@ -81,35 +81,35 @@
 
 /* ==========================================================================
    DARK THEME TOKENS
-   Preserves contrast, avoids pure black, maintains readable Nepali text
+   Deep midnight navy surfaces matching the brand globe with vibrant orange accents
    ========================================================================== */
 
 [data-theme="dark"],
 .dark {
-  /* Crimson tuned for dark mode readability */
-  --color-primary: #E63946;
-  --color-primary-hover: #F87171;
-  --color-primary-muted: rgba(230, 57, 70, 0.15);
+  /* Vibrant Orange tuned for dark mode contrast */
+  --color-primary: #FF6E1A;
+  --color-primary-hover: #FF8A43;
+  --color-primary-muted: rgba(255, 110, 26, 0.16);
   --color-primary-foreground: #FFFFFF;
 
   /* Deep Blue tuned for dark mode */
   --color-secondary: #3B82F6;
   --color-secondary-hover: #60A5FA;
-  --color-secondary-muted: rgba(59, 130, 246, 0.15);
+  --color-secondary-muted: rgba(59, 130, 246, 0.16);
   --color-secondary-foreground: #FFFFFF;
 
-  /* Canvas & Surfaces (Dark Slate/Navy) */
-  --color-background: #0B0F17;
-  --color-surface: #131A29;
-  --color-surface-muted: #1B2438;
-  --color-surface-elevated: #232E45;
+  /* Canvas & Surfaces (Deep Midnight Navy) */
+  --color-background: #060D17;
+  --color-surface: #0B1728;
+  --color-surface-muted: #122138;
+  --color-surface-elevated: #192D4A;
 
   /* Text & Border */
   --color-foreground: #F8FAFC;
   --color-foreground-muted: #CBD5E1;
   --color-muted: #94A3B8;
-  --color-border: #232E45;
-  --color-border-subtle: #182235;
+  --color-border: #1B3150;
+  --color-border-subtle: #13243B;
 
   /* Semantic Feedback */
   --color-success: #22C55E;
@@ -122,10 +122,10 @@
   --color-info-muted: rgba(56, 189, 248, 0.15);
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
-  --shadow-focus: 0 0 0 3px rgba(230, 57, 70, 0.35);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.6), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.7), 0 4px 6px -4px rgba(0, 0, 0, 0.5);
+  --shadow-focus: 0 0 0 3px rgba(255, 110, 26, 0.35);
 }
 
 /* ==========================================================================

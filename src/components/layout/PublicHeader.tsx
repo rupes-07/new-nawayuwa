@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Menu, AlertCircle } from 'lucide-react';
+import { Menu, AlertCircle, Shield, LogIn } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext.tsx';
 import { useI18n } from '../../context/I18nContext.tsx';
 import { ThemeSwitcher } from './ThemeSwitcher.tsx';
 import { LanguageSwitcher } from './LanguageSwitcher.tsx';
 import { MobileNavigation } from './MobileNavigation.tsx';
+import { BrandLogo } from '../ui/BrandLogo.tsx';
+import { AuthHeaderMenu } from '../auth/AuthHeaderMenu.tsx';
 import { Button } from '../ui/Button.tsx';
 
 export interface PublicHeaderProps {
@@ -21,6 +24,7 @@ export const PublicHeader: React.FC<PublicHeaderProps> = ({
   onOpenJoin,
   className = '',
 }) => {
+  const { user } = useAuth();
   const { t } = useI18n();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -39,30 +43,14 @@ export const PublicHeader: React.FC<PublicHeaderProps> = ({
         className={`sticky top-0 z-40 bg-[var(--color-surface)]/95 backdrop-blur-md border-b border-[var(--color-border)] shadow-xs transition-colors duration-200 ${className}`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-18 gap-4 sm:gap-8">
-            {/* Zone 1: Single-Element Brand Wordmark */}
-            <div
+          <div className="flex items-center justify-between h-18 gap-3 sm:gap-6">
+            {/* Zone 1: Official Brand Logo & Wordmark from image asset */}
+            <BrandLogo
               onClick={() => onNavigate?.('/')}
-              className="flex items-center gap-3 cursor-pointer select-none shrink-0"
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') onNavigate?.('/');
-              }}
-              aria-label="Nawa Yuwa Club Home"
-            >
-              <div className="w-10 h-10 rounded-xl bg-[var(--color-primary)] text-white flex items-center justify-center font-black text-base shadow-xs shrink-0">
-                NY
-              </div>
-              <div className="whitespace-nowrap shrink-0">
-                <span className="font-extrabold text-base sm:text-lg tracking-tight text-[var(--color-foreground)] block leading-tight">
-                  {t('brandName')}
-                </span>
-                <span className="text-[10px] text-[var(--color-muted)] font-medium block">
-                  Youth & Community Action
-                </span>
-              </div>
-            </div>
+              size="md"
+              showText={true}
+              showSubtitle={true}
+            />
 
             {/* Zone 2: Desktop Navigation Links (Single Line, 5 exact items) */}
             <nav
@@ -78,7 +66,7 @@ export const PublicHeader: React.FC<PublicHeaderProps> = ({
                     onClick={() => onNavigate?.(item.path)}
                     className={`touch-target py-2 text-sm font-semibold transition-colors cursor-pointer border-b-2 -mb-[2px] ${
                       isActive
-                        ? 'border-[var(--color-primary)] text-[var(--color-primary)]'
+                        ? 'border-[#FA5A00] text-[#FA5A00]'
                         : 'border-transparent text-[var(--color-muted)] hover:text-[var(--color-foreground)] hover:border-[var(--color-border)]'
                     }`}
                     aria-current={isActive ? 'page' : undefined}
@@ -89,7 +77,7 @@ export const PublicHeader: React.FC<PublicHeaderProps> = ({
               })}
             </nav>
 
-            {/* Zone 3: Actions & CTAs */}
+            {/* Zone 3: Actions, Auth & Controls */}
             <div className="flex items-center gap-2 sm:gap-3 shrink-0">
               {/* Language Switcher */}
               <div className="hidden sm:block">
@@ -102,26 +90,19 @@ export const PublicHeader: React.FC<PublicHeaderProps> = ({
               </div>
 
               {/* Secondary CTA: Report an Issue */}
-              <div className="hidden md:block">
+              <div className="hidden xl:block">
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={onOpenReport}
-                  leftIcon={<AlertCircle className="w-3.5 h-3.5 text-[var(--color-primary)]" />}
+                  leftIcon={<AlertCircle className="w-3.5 h-3.5 text-[#FA5A00]" />}
                 >
                   {t('navReportIssue')}
                 </Button>
               </div>
 
-              {/* Primary CTA: Join Nawa Yuwa */}
-              <Button
-                variant="primary"
-                size="sm"
-                onClick={onOpenJoin}
-                className="whitespace-nowrap"
-              >
-                {t('ctaJoinNawaYuwa')}
-              </Button>
+              {/* Authentication & User Authorization Menu */}
+              <AuthHeaderMenu onNavigate={onNavigate} />
 
               {/* Mobile Menu Hamburger */}
               <button

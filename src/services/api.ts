@@ -1,4 +1,30 @@
-import type { User, MatchFixture, Player, ClubEvent, Notice, FinancialRecord, MembershipApplication, UserRole, PlatformStats, Chapter, CommunityIssue, CommunityProject } from '../types/index.ts';
+import type {
+  User,
+  MatchFixture,
+  Player,
+  ClubEvent,
+  Notice,
+  FinancialRecord,
+  MembershipApplication,
+  UserRole,
+  PlatformStats,
+  Chapter,
+  CommunityIssue,
+  CommunityProject,
+  LeaderContext,
+  LeaderDashboardData,
+  LeaderMembersResponse,
+  LeaderIssuesResponse,
+  LeaderAttendanceData,
+  LeaderPromotionsResponse,
+  AdminContext,
+  AdminDashboardData,
+  AdminChaptersResponse,
+  AdminPromotionsResponse,
+  AdminModerationResponse,
+  AdminAuditResponse,
+  PlatformConfig,
+} from '../types/index.ts';
 
 const TOKEN_KEY = 'nawa_yuwa_auth_token';
 const USER_KEY = 'nawa_yuwa_auth_user';
@@ -77,15 +103,129 @@ export const api = {
   },
 
   async quickLogin(role: UserRole): Promise<{ token: string; user: User }> {
-    const res = await fetch('/api/auth/quick-login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ role }),
-    });
-    if (!res.ok) throw new Error('Quick login failed');
-    const data = await res.json();
-    saveAuthData(data.token, data.user);
-    return data;
+    try {
+      const res = await fetch('/api/auth/quick-login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ role }),
+      });
+      if (!res.ok) throw new Error('Quick login failed');
+      const data = await res.json();
+      saveAuthData(data.token, data.user);
+      return data;
+    } catch {
+      // Local resilient fallback for preview container
+      const seedUsers: Record<UserRole, User> = {
+        admin: {
+          id: 'user-admin',
+          name: 'Santosh Shrestha',
+          email: 'admin@nawayuwaclub.org',
+          phone: '+977-9857012345',
+          role: 'admin',
+          clubWing: 'Executive Committee',
+          membershipId: 'NYC-2005-001',
+          joinedDate: '2005-04-14',
+          status: 'active',
+          avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80',
+          bio: 'Club President dedicated to youth empowerment, sports infrastructure, and community service in Nawalparasi.',
+          volunteerHours: 340,
+          onboardingCompleted: true,
+          province: 'Lumbini Province',
+          district: 'Nawalparasi (Bardaghat Susta West)',
+          localLevel: 'Bardaghat Municipality',
+          ward: '16',
+          preferredLanguage: 'ne',
+        },
+        chapter_leader: {
+          id: 'user-leader',
+          name: 'Bibek Sharma Adhikari',
+          email: 'leader@nawayuwaclub.org',
+          phone: '+977-9847000001',
+          role: 'chapter_leader',
+          clubWing: 'Bardaghat Chapter Executive',
+          membershipId: 'NYC-2021-002',
+          joinedDate: '2021-02-10',
+          status: 'active',
+          avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80',
+          bio: 'Chapter Coordinator for Bardaghat Chapter, leading youth volunteering, civic reporting, and municipal development.',
+          volunteerHours: 260,
+          onboardingCompleted: true,
+          chapterId: 'chap-1',
+          province: 'Lumbini Province',
+          district: 'Nawalparasi (Bardaghat Susta West)',
+          localLevel: 'Bardaghat Municipality',
+          ward: '16',
+          preferredLanguage: 'ne',
+        },
+        treasurer: {
+          id: 'user-treasurer',
+          name: 'Kopila Gurung',
+          email: 'finance@nawayuwaclub.org',
+          phone: '+977-9867123980',
+          role: 'treasurer',
+          clubWing: 'Finance & Auditing Wing',
+          membershipId: 'NYC-2018-015',
+          joinedDate: '2018-06-10',
+          status: 'active',
+          avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80',
+          bio: 'Finance Secretary ensuring 100% public fiscal transparency and fund allocations for local youth.',
+          volunteerHours: 190,
+          onboardingCompleted: true,
+          province: 'Lumbini Province',
+          district: 'Nawalparasi (Bardaghat Susta West)',
+          localLevel: 'Bardaghat Municipality',
+          ward: '16',
+          preferredLanguage: 'ne',
+        },
+        player: {
+          id: 'user-player',
+          name: 'Dinesh Bhattarai',
+          email: 'captain@nawayuwaclub.org',
+          phone: '+977-9812345678',
+          role: 'player',
+          clubWing: 'Senior Football Team',
+          membershipId: 'NYC-2019-042',
+          joinedDate: '2019-09-01',
+          status: 'active',
+          avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80',
+          position: 'Midfielder',
+          jerseyNumber: 10,
+          bio: 'First Team Captain & Midfield Playmaker. Product of Nawa Yuwa Youth Academy.',
+          volunteerHours: 85,
+          onboardingCompleted: true,
+          province: 'Lumbini Province',
+          district: 'Nawalparasi (Bardaghat Susta West)',
+          localLevel: 'Bardaghat Municipality',
+          ward: '14',
+          preferredLanguage: 'ne',
+        },
+        member: {
+          id: 'user-member',
+          name: 'Pradeep Chaudhary',
+          email: 'member@nawayuwaclub.org',
+          phone: '+977-9847654321',
+          role: 'member',
+          clubWing: 'Cultural & Social Wing',
+          membershipId: 'NYC-2022-118',
+          joinedDate: '2022-01-15',
+          status: 'active',
+          avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80',
+          bio: 'Active youth volunteer for cultural festivals, tree plantation, and disaster response teams.',
+          volunteerHours: 42,
+          onboardingCompleted: true,
+          chapterId: 'chap-1',
+          province: 'Lumbini Province',
+          district: 'Nawalparasi (Bardaghat Susta West)',
+          localLevel: 'Bardaghat Municipality',
+          ward: '16',
+          preferredLanguage: 'ne',
+        },
+      };
+      const user = seedUsers[role] || seedUsers.member;
+      const token = `token-${role}-${Date.now()}`;
+      saveAuthData(token, user);
+      return { token, user };
+    }
   },
 
   async sendOtp(payload: { phone?: string; email?: string }): Promise<{ message: string; demoOtp?: string; expiresInSeconds?: number }> {
@@ -362,6 +502,344 @@ export const api = {
       headers: getHeaders(),
     });
     if (!res.ok) throw new Error('Failed to update project RSVP');
+    return res.json();
+  },
+
+  // ========================================================================
+  // PHASE 11: CHAPTER LEADER APIs
+  // ========================================================================
+
+  async getLeaderContext(): Promise<LeaderContext> {
+    const res = await fetch('/api/leader/context', {
+      headers: getHeaders(),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || 'Failed to fetch leader authorization context');
+    }
+    return res.json();
+  },
+
+  async getLeaderDashboard(): Promise<LeaderDashboardData> {
+    const res = await fetch('/api/leader/dashboard', {
+      headers: getHeaders(),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || 'Failed to fetch leader dashboard data');
+    }
+    return res.json();
+  },
+
+  async getLeaderMembers(): Promise<LeaderMembersResponse> {
+    const res = await fetch('/api/leader/members', {
+      headers: getHeaders(),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || 'Failed to fetch chapter members');
+    }
+    return res.json();
+  },
+
+  async executeLeaderMemberAction(id: string, action: string, payload?: any): Promise<any> {
+    const res = await fetch(`/api/leader/members/${encodeURIComponent(id)}/action`, {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify({ action, ...payload }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || `Failed to execute action "${action}"`);
+    }
+    return res.json();
+  },
+
+  async getLeaderIssues(): Promise<LeaderIssuesResponse> {
+    const res = await fetch('/api/leader/issues', {
+      headers: getHeaders(),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || 'Failed to fetch chapter issues');
+    }
+    return res.json();
+  },
+
+  async updateLeaderIssueStatus(id: string, status: string, notes?: string): Promise<any> {
+    const res = await fetch(`/api/leader/issues/${encodeURIComponent(id)}/status`, {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify({ status, notes }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || 'Failed to update issue status');
+    }
+    return res.json();
+  },
+
+  async addLeaderIssueNote(id: string, note: string): Promise<any> {
+    const res = await fetch(`/api/leader/issues/${encodeURIComponent(id)}/notes`, {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify({ note }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || 'Failed to append note to issue');
+    }
+    return res.json();
+  },
+
+  async createLeaderProject(projectData: {
+    name: string;
+    description: string;
+    category: string;
+    location: string;
+    date: string;
+    targetVolunteers?: number;
+    requiredSkills?: string;
+    volunteerHoursCredit?: number;
+    prerequisites?: string;
+    coordinatorNotes?: string;
+    images?: string[];
+    imageUrl?: string;
+  }): Promise<{ message: string; project: CommunityProject }> {
+    const res = await fetch('/api/leader/projects/new', {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify(projectData),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || 'Failed to create chapter project');
+    }
+    return res.json();
+  },
+
+  async getLeaderAttendance(sessionId?: string): Promise<LeaderAttendanceData> {
+    const query = sessionId ? `?sessionId=${encodeURIComponent(sessionId)}` : '';
+    const res = await fetch(`/api/leader/attendance${query}`, {
+      headers: getHeaders(),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || 'Failed to fetch attendance records');
+    }
+    return res.json();
+  },
+
+  async markLeaderAttendance(
+    sessionId: string,
+    records: Array<{ memberId: string; status: 'present' | 'absent' | 'late' | 'excused'; notes?: string }>
+  ): Promise<any> {
+    const res = await fetch('/api/leader/attendance/mark', {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify({ sessionId, records }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || 'Failed to update attendance');
+    }
+    return res.json();
+  },
+
+  async getLeaderPromotions(): Promise<LeaderPromotionsResponse> {
+    const res = await fetch('/api/leader/promotions', {
+      headers: getHeaders(),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || 'Failed to fetch promotions');
+    }
+    return res.json();
+  },
+
+  async executeLeaderPromotionAction(
+    id: string,
+    action: 'approve' | 'reject' | 'nominate',
+    payload?: any
+  ): Promise<any> {
+    const res = await fetch(`/api/leader/promotions/${encodeURIComponent(id)}/action`, {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify({ action, ...payload }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || `Failed to execute promotion action "${action}"`);
+    }
+    return res.json();
+  },
+
+  // ========================================================================
+  // PHASE 12: PLATFORM ADMINISTRATION APIs
+  // ========================================================================
+
+  async getAdminContext(): Promise<AdminContext> {
+    const res = await fetch('/api/admin/context', {
+      headers: getHeaders(),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || 'Failed to fetch platform administration context');
+    }
+    return res.json();
+  },
+
+  async getAdminDashboard(): Promise<AdminDashboardData> {
+    const res = await fetch('/api/admin/dashboard', {
+      headers: getHeaders(),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || 'Failed to fetch admin dashboard metrics');
+    }
+    return res.json();
+  },
+
+  async getAdminChapters(): Promise<AdminChaptersResponse> {
+    const res = await fetch('/api/admin/chapters', {
+      headers: getHeaders(),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || 'Failed to fetch chapters registry');
+    }
+    return res.json();
+  },
+
+  async updateAdminChapter(id: string, updates: Partial<Chapter & { status?: string }>): Promise<any> {
+    const res = await fetch(`/api/admin/chapters/${encodeURIComponent(id)}`, {
+      method: 'PATCH',
+      headers: getHeaders(),
+      body: JSON.stringify(updates),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || 'Failed to update chapter information');
+    }
+    return res.json();
+  },
+
+  async createAdminChapter(chapterData: any): Promise<any> {
+    const res = await fetch('/api/admin/chapters', {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify(chapterData),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || 'Failed to establish new chapter');
+    }
+    return res.json();
+  },
+
+  async executeAdminChapterAction(id: string, action: string): Promise<any> {
+    const res = await fetch(`/api/admin/chapters/${encodeURIComponent(id)}/action`, {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify({ action }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || `Failed to execute action "${action}" on chapter`);
+    }
+    return res.json();
+  },
+
+  async getAdminPromotions(): Promise<AdminPromotionsResponse> {
+    const res = await fetch('/api/admin/promotions', {
+      headers: getHeaders(),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || 'Failed to fetch executive promotions');
+    }
+    return res.json();
+  },
+
+  async executeAdminPromotionAction(
+    id: string,
+    action: 'approve' | 'reject' | 'revoke',
+    payload?: any
+  ): Promise<any> {
+    const res = await fetch(`/api/admin/promotions/${encodeURIComponent(id)}/action`, {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify({ action, ...payload }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || `Failed to execute promotion action "${action}"`);
+    }
+    return res.json();
+  },
+
+  async getAdminModeration(): Promise<AdminModerationResponse> {
+    const res = await fetch('/api/admin/moderation', {
+      headers: getHeaders(),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || 'Failed to fetch moderation queue');
+    }
+    return res.json();
+  },
+
+  async executeAdminModerationAction(id: string, action: string, notes?: string): Promise<any> {
+    const res = await fetch(`/api/admin/moderation/${encodeURIComponent(id)}/action`, {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify({ action, notes }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || `Failed to apply moderation action "${action}"`);
+    }
+    return res.json();
+  },
+
+  async getAdminConfig(): Promise<{ config: PlatformConfig; capabilities: any; allowedActions: string[] }> {
+    const res = await fetch('/api/admin/config', {
+      headers: getHeaders(),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || 'Failed to fetch platform configuration');
+    }
+    return res.json();
+  },
+
+  async updateAdminConfig(updates: Partial<PlatformConfig>): Promise<any> {
+    const res = await fetch('/api/admin/config', {
+      method: 'PATCH',
+      headers: getHeaders(),
+      body: JSON.stringify(updates),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || 'Failed to update platform settings');
+    }
+    return res.json();
+  },
+
+  async getAdminAudit(params?: { action?: string; result?: string; search?: string }): Promise<AdminAuditResponse> {
+    const query = new URLSearchParams();
+    if (params?.action) query.set('action', params.action);
+    if (params?.result) query.set('result', params.result);
+    if (params?.search) query.set('search', params.search);
+
+    const qs = query.toString() ? `?${query.toString()}` : '';
+    const res = await fetch(`/api/admin/audit${qs}`, {
+      headers: getHeaders(),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || 'Failed to fetch security and audit trails');
+    }
     return res.json();
   },
 };
