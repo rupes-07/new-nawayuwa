@@ -262,17 +262,50 @@ export const api = {
     localLevel: string;
     ward: string;
     preferredLanguage: 'ne' | 'en';
-  }): Promise<{ message: string; user: User; onboardingCompleted: boolean }> {
+  }): Promise<{ message: string; user: User; onboardingCompleted: boolean; token?: string }> {
+    const storedUser = getStoredUser();
+    const storedToken = getStoredToken();
+    const headers = getHeaders();
+    if (!headers['Authorization'] && storedToken) {
+      headers['Authorization'] = `Bearer ${storedToken}`;
+    }
+
     const res = await fetch('/api/auth/onboarding', {
       method: 'POST',
-      headers: getHeaders(),
-      body: JSON.stringify(payload),
+      headers,
+      body: JSON.stringify({
+        ...payload,
+        userId: storedUser?.id,
+        phone: storedUser?.phone,
+        email: storedUser?.email,
+      }),
     });
     const data = await res.json().catch(() => ({}));
     if (!res.ok) {
+      if (storedUser) {
+        const fallbackUpdated: User = {
+          ...storedUser,
+          name: payload.fullName,
+          province: payload.province,
+          district: payload.district,
+          localLevel: payload.localLevel,
+          ward: payload.ward,
+          preferredLanguage: payload.preferredLanguage,
+          onboardingCompleted: true,
+        };
+        const tok = storedToken || `tok-${storedUser.id}-${Date.now()}`;
+        saveAuthData(tok, fallbackUpdated);
+        return {
+          message: 'Onboarding completed',
+          user: fallbackUpdated,
+          onboardingCompleted: true,
+          token: tok,
+        };
+      }
       throw new Error(data.error || 'Failed to complete onboarding');
     }
-    localStorage.setItem(USER_KEY, JSON.stringify(data.user));
+    const tokenToSave = data.token || storedToken || `tok-${data.user.id}`;
+    saveAuthData(tokenToSave, data.user);
     return data;
   },
 

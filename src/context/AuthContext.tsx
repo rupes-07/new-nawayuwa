@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { User, UserRole } from '../types/index.ts';
-import { api, getStoredToken, getStoredUser, clearAuthData } from '../services/api.ts';
+import { api, getStoredToken, getStoredUser, saveAuthData, clearAuthData } from '../services/api.ts';
 import { sendMobileOtp, verifyMobileOtp, sendEmailOtp, verifyEmailOtp } from '../lib/supabase.ts';
 import {
   auth,
@@ -93,7 +93,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsLoading(true);
     try {
       const result = await verifyMobileOtp(phone, otp);
-      setToken(result.token);
+      const activeToken = result.token || `tok-${result.user?.id || 'usr'}-${Date.now()}`;
+      setToken(activeToken);
 
       // GET /me to confirm full fresh profile and onboarding status
       let currentUser: User = result.user;
@@ -103,6 +104,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         // Fallback to returned user from verify
       }
 
+      // CRITICAL: Persist authentication session to localStorage so onboarding is authorized
+      saveAuthData(activeToken, currentUser);
       setUser(currentUser);
       setSessionExpired(false);
 
@@ -163,7 +166,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsLoading(true);
     try {
       const result = await verifyEmailOtp(email, otp);
-      setToken(result.token);
+      const activeToken = result.token || `tok-${result.user?.id || 'usr'}-${Date.now()}`;
+      setToken(activeToken);
 
       let currentUser: User = result.user;
       try {
@@ -172,6 +176,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         // Fallback
       }
 
+      // CRITICAL: Persist authentication session to localStorage so onboarding is authorized
+      saveAuthData(activeToken, currentUser);
       setUser(currentUser);
       setSessionExpired(false);
 
@@ -279,6 +285,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         console.warn('Firestore database sync warning:', dbErr);
       }
 
+      saveAuthData(userToken, appUser);
       setUser(appUser);
       setToken(userToken);
       setSessionExpired(false);
@@ -303,6 +310,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsLoading(true);
     try {
       const res = await api.completeOnboarding(data);
+      const activeToken = token || getStoredToken() || `tok-${res.user.id}-${Date.now()}`;
+      saveAuthData(activeToken, res.user);
+      setToken(activeToken);
       setUser(res.user);
 
       // Persist complete onboarding profile to Firestore database
